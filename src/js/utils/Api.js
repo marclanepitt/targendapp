@@ -74,12 +74,11 @@ class Api {
       .then(response => {
         this.user = {};
         this.uuid = "";
-        this.upid = "";
         Cookies.remove('uuid');
-        Cookies.remove('upid');
+        onSuccess(response);
       })
       .catch(err => {
-        console.error(err);
+        onError(err);
       });
   }
 

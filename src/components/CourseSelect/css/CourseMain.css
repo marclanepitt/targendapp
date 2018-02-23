@@ -1,0 +1,26 @@
+body {
+}
+
+nav {
+	background-color: #f8f8f8;
+	border:1px solid #e7e7e7;
+}
+
+.course-card-container {
+	margin-top: 10px;
+	  background: url("../../../img/bg-pattern.png");
+
+	background-color: #E9F3FA;
+	border: 1px solid #e7e7e7;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.course-card-inner{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}

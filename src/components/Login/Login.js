@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './css/Login.css';
 import ApiInstance from '../../js/utils/Api.js';
+import { Link } from 'react-router-dom';
+import Loader from '../Common/Loader.js'
+
 
 const Api = ApiInstance.instance;
 
@@ -11,6 +14,7 @@ class Login extends Component {
 		this.state = {
 			email: "",
 			password:"",
+			loading:false,
 			loginError:false,
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -18,6 +22,7 @@ class Login extends Component {
 	}
 
 	componentDidMount() {
+		document.body.style.backgroundColor = "#4B9CD3";
 	}
 
 	handleInputChange(e,field) {
@@ -28,13 +33,18 @@ class Login extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		
+
+		this.setState({
+			loading:true,
+		})
+
 		const onSuccess = response => {
 			this.props.history.push('/courses');
 		}
 		const onError = err => {
 			this.setState({
-				loginError:true
+				loginError:true,
+				loading:false,
 			})
 		}
 
@@ -49,9 +59,10 @@ class Login extends Component {
 	}
 
   render() {
-  	let {loginError} = this.state;
+  	let {loginError,loading} = this.state;
     return (
       <div>
+      	<Loader loading = {loading} />
 		<div className="container">
 		  
 		  <div className="row" id="pwd-container">
@@ -82,7 +93,7 @@ class Login extends Component {
 		          
 		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Sign in</button>
 		          <div>
-		            <a>Create account</a> or <a>reset password</a>
+		            <Link to="/register">Create account</Link> or <a>reset password</a>
 		          </div>
 		          
 		        </form>
