@@ -1,3 +1,4 @@
+
 //React
 import React from "react";
 import ReactDOM from "react-dom";
@@ -9,6 +10,7 @@ import App from "./components/App/App";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import CourseMain from "./components/CourseSelect/CourseMain";
+import UserMain from "./components/UserHome/UserMain";
 
 
 //External Css
@@ -24,6 +26,7 @@ ReactDOM.render((
 			<Route path='/login' component={Login}/>
 			<Route path='/register' component={Register}/>
 			<Route path='/courses' component = {CourseMain}/>
+			<Route path='/home' component = {UserMain}/>
 		</Switch>
   </BrowserRouter>
 ), document.getElementById('root'))

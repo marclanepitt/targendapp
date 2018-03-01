@@ -82,6 +82,50 @@ class Api {
       });
   }
 
+  getCourses(university, onSuccess,onError) {
+      return axios.get(this.generateUrl("courses/list/"+university,"v1"), {
+          headers: this.generateTokenHeader()
+        })
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      })
+  }
+
+  getFilteredCourses(university, dep, num, sect, onSuccess,onError) {
+      return axios.get(this.generateUrl("courses/list/"+university,"v1"), {
+          headers: this.generateTokenHeader(),
+          params: {
+            department:dep,
+            number:num,
+            section:sect,
+          }
+        })
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      })
+  }
+
+  addCourse(course_id,onSuccess,onError) {
+    Promise.resolve(this.user).then(response => {
+      return axios({ method: 'put', url:  this.generateUrl('users/course-add/'+response.id+"?course="+course_id,"v1"),
+       headers:this.generateTokenHeader(),
+        }
+       )
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      });   
+    });
+  }
+
   store(name, data) {
     Cookies.set(name, data, { expires: 10 / 24 });
   }
