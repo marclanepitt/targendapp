@@ -126,6 +126,27 @@ class Api {
     });
   }
 
+  calendarRequest(onSuccess,onError) {
+    Promise.resolve(this.user).then(response => {
+      return axios({ method: 'get', url:  this.generateUrl('calendar/request',"v1"),
+       headers:this.generateTokenHeader(),
+       params: {
+            id:response.id
+          }
+        }
+       )
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      });   
+    });
+  }
+
+
+
+  //UTILITY FUNCTIONS
   store(name, data) {
     Cookies.set(name, data, { expires: 10 / 24 });
   }

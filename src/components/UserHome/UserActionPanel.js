@@ -18,9 +18,9 @@ class UserActionPanel extends Component {
   	}
 
     return (
-      <div className = "panel-wrapper col col-lg-6">
+      <div className = "panel-wrapper col col-lg-6" onClick={this.props.clickAction}>
       	<div className = "panel">
-            <div className="card" style={{height:"250px"}}>
+            <div className="card" style={{height:"250px",cursor:"pointer"}}>
               <div className="card-block">
                 <h4 className="card-title">{title}</h4>
 

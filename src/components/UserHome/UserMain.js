@@ -3,6 +3,7 @@ import ApiInstance from '../../js/utils/Api.js';
 import {Link} from "react-router-dom";
 import UserActionPanel from "./UserActionPanel.js";
 import Loader from "../Common/Loader.js";
+import {Alert} from "react-bootstrap";
 
 const Api = ApiInstance.instance;
 
@@ -13,9 +14,14 @@ class UserMain extends Component {
 
 		this.state = {
 			loading:false,
+			showAlert:false,
+			alertMessage:"",
+			alertType:"",
 		}
 
 		this.handleLogout = this.handleLogout.bind(this);
+		this.handleCalRequest = this.handleCalRequest.bind(this);
+		this.toggleAlert = this.toggleAlert.bind(this);
 	}
 
 	handleLogout(e) {
@@ -34,8 +40,39 @@ class UserMain extends Component {
 		Api.logoutUser(onSuccess,onError);
 	}
 
+	handleCalRequest() {
+		this.setState({
+			loading:true
+		});
+
+		const onSuccess = response => {
+			this.setState({
+				loading:false,
+				showAlert:true,
+				alertMessage:"Congrats! We will email you your calendar in 1-2 business days.",
+				alertType:"success"
+			});
+		}
+
+		const onError = err => {
+			this.setState({
+				loading:false,
+				showAlert:true,
+				alertMessage:"Something went wrong in requesting your calendar",
+				alertType:"danger"
+			});
+		}
+
+		Api.calendarRequest(onSuccess,onError);
+	}
+	toggleAlert() {
+		this.setState({
+			showAlert: !this.state.showAlert,
+		})
+	}
+
   render() {
-  	let {loading} = this.state;
+  	let {loading,showAlert,alertMessage,alertType} = this.state;
     return (
       <div>
       {loading ?
@@ -58,9 +95,17 @@ class UserMain extends Component {
 		  </div>
 		</nav>
 
+		{showAlert ?
+		<Alert bsStyle={alertType} onDismiss={this.toggleAlert}>
+		  {alertMessage}
+		</Alert>
+		:
+		<div>
+		</div>
+		}
 		<div className = "container">
 			<div className = "row" style={{marginTop:'50px'}}>
-				<UserActionPanel panelType ={"calendar"}/>
+				<UserActionPanel clickAction = {this.handleCalRequest} panelType ={"calendar"}/>
 				<UserActionPanel panelType = {"notifications"}/>
 			</div>
 		</div>
