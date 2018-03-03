@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import CourseMain from "./components/CourseSelect/CourseMain";
 import UserMain from "./components/UserHome/UserMain";
+import NotFound from "./components/Common/NotFound";
 
 
 //External Css
@@ -27,6 +28,7 @@ ReactDOM.render((
 			<Route path='/register' component={Register}/>
 			<Route path='/courses' component = {CourseMain}/>
 			<Route path='/home' component = {UserMain}/>
+			<Route path="*" component={NotFound} />
 		</Switch>
   </BrowserRouter>
 ), document.getElementById('root'))

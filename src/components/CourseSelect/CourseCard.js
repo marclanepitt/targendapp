@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 //External Css
 import './css/CourseCard.css';
 
-//Images
-import cs from './img/computer_science.jpeg';
-
 //External Components
 import FontAwesome from 'react-fontawesome';
 
@@ -17,9 +14,11 @@ class CourseCard extends Component {
     constructor(props) {
         super(props);
         this.handleCourseAdd = this.handleCourseAdd.bind(this);
+        this.handleCourseRemove = this.handleCourseRemove.bind(this);
     }
 
     handleCourseAdd() {
+        this.props.setCourseLoading();
         const onSuccess = response => {
             this.props.handleCourseAdd([response.data.user,this.props.course.department+ " " + this.props.course.number+"-"+this.props.course.section]);
         }
@@ -29,6 +28,19 @@ class CourseCard extends Component {
         }
 
         Api.addCourse(this.props.course.id,onSuccess,onError);
+    }
+
+    handleCourseRemove() {
+        this.props.setCourseLoading();
+        const onSuccess = response => {
+            this.props.handleCourseRemove([response.data.user,this.props.course.department+ " " + this.props.course.number+"-"+this.props.course.section]);
+        }
+
+        const onError = err => {
+            console.log(err);
+        }
+
+        Api.removeCourse(this.props.course.id,onSuccess,onError);
     }
 
   render() {
@@ -46,11 +58,11 @@ class CourseCard extends Component {
                     <div className="card" style={{height:"250px"}}>
                     {this.props.chosen ? 
                       <div className="image-container">
-                          <img className="card-img-top" src={cs} alt="100%x180" style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
-                          <div className="after">Already Added</div>
+                          <img className="card-img-top" src={course.image.image} alt="100%x180" style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
+                          <div className="after">Selected</div>
                       </div>
                       :
-                          <img className="card-img-top" src={cs} alt="100%x180" style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
+                          <img className="card-img-top" src={course.image.image} alt="100%x180" style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
                         }
                       <div className="card-block">
                         <h4 className="card-title">{course.department} {course.number}-{course.section}</h4>
@@ -66,7 +78,7 @@ class CourseCard extends Component {
                                 <FontAwesome style={{fontSize:'28px'}} name='file-text-o'/>
                             </div>
                             <div className = "col col-lg-6 text-center">
-                                56 <b>Assignments</b>
+                                {course.assignment_total} <b>Assignments</b>
                             </div>
                         </div>
                         <hr/>
@@ -75,7 +87,7 @@ class CourseCard extends Component {
                                 <FontAwesome style={{fontSize:'28px'}} name='bullhorn'/>
                             </div>
                             <div className = "col col-lg-6 text-center">
-                                40 <b>Lectures</b>
+                                {course.lecture_total} <b>Lectures</b>
                             </div>
                         </div>
                         <hr/>
@@ -84,13 +96,13 @@ class CourseCard extends Component {
                                 <FontAwesome style={{fontSize:'28px'}} name='edit'/>
                             </div>
                             <div className = "col col-lg-6 text-center">
-                                3 <b>Tests</b>
+                                {course.test_total} <b>Tests</b>
                             </div>
                         </div>
                         <hr/>
                         <h4 className="card-title" style={{marginTop:'14px'}}>
                         {this.props.chosen ? 
-                            <button onClick={this.handleCourseAdd} disabled className="btn btn-sm btn-success">Add Course</button>
+                            <button onClick={this.handleCourseRemove} className="btn btn-sm btn-danger">Remove Course</button>
                         :
                             <button onClick={this.handleCourseAdd} className="btn btn-sm btn-success">Add Course</button>
                         }

@@ -1,0 +1,12 @@
+.course-cart-box {
+	margin-top: 30px;
+	height: 500px;
+	border: 1px lightgrey solid;
+	background-color: white;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.course-cart-row {
+	height: 350px;
+}

@@ -1,0 +1,46 @@
+.not-title {
+	margin-top: -30px;
+	color: #4B9CD3;
+	text-align: center;
+	font-size: 70px;
+	font-weight: 900;
+}
+
+.not-emoji-cry {
+	font-size: 30px !important;
+}
+
+.not-outer {
+	margin-top: -50px;
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.not-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.four-o-four {
+	text-align: center;
+	font-weight: 900;
+	font-size: 180px;
+}
+
+.not-text {
+	font-weight: 900;
+	text-align: center;
+	font-size: 18px;
+	margin-top: 18px;
+}
+
+.not-btn {
+	margin-top: 30px;
+}
+
+.not-btn-btn {
+	background-color: #4B9CD3 !important;
+	border: none !important;
+}

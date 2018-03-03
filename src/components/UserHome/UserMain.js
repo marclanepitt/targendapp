@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import ApiInstance from '../../js/utils/Api.js';
 import {Link} from "react-router-dom";
 import UserActionPanel from "./UserActionPanel.js";
+import CourseCardPreview from "./CourseCardPreview";
 import Loader from "../Common/Loader.js";
 import {Alert} from "react-bootstrap";
+import "./css/UserMain.css";
 
 const Api = ApiInstance.instance;
 
@@ -13,15 +15,48 @@ class UserMain extends Component {
 		super(props);
 
 		this.state = {
-			loading:false,
+			loading:true,
 			showAlert:false,
 			alertMessage:"",
 			alertType:"",
+			courseList:[],
+			user:{},
 		}
 
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleCalRequest = this.handleCalRequest.bind(this);
 		this.toggleAlert = this.toggleAlert.bind(this);
+		this.generateCourses = this.generateCourses.bind(this);
+	}
+
+	componentDidMount() {
+		if(Api.isAuthenticated()) {
+			document.body.style.backgroundColor = "white";
+			Promise.resolve(Api.getUser()).then(response=> {
+				this.setState({
+					loading:false,
+					user:response,
+				});
+			});
+			this.generateCourses();
+		} else {
+			this.props.history.push("/login");
+		}
+
+	}
+
+	generateCourses() {
+		const onSuccess = response => {
+			this.setState({
+				courseList:response.data,
+			});
+		}
+
+		const onError = err => {
+			console.log("error loading courses");
+		}
+
+		Api.getCourses(1,onSuccess,onError);
 	}
 
 	handleLogout(e) {
@@ -72,9 +107,10 @@ class UserMain extends Component {
 	}
 
   render() {
-  	let {loading,showAlert,alertMessage,alertType} = this.state;
+
+  	let {loading,showAlert,alertMessage,alertType,courseList,user} = this.state;
     return (
-      <div>
+      <div className="overflow-hide">
       {loading ?
       	<Loader loading={loading}/>
       :
@@ -87,7 +123,7 @@ class UserMain extends Component {
 		      </a>
 		    </div>
 		     <ul className="nav navbar-nav">
-	       		<Link to="/courses" className="btn btn-default"><b>Add Courses</b></Link>
+	       		<Link to="/courses" className="btn btn-default my-courses-btn"><b>My Courses</b></Link>
           	</ul>
 		    <ul className="nav navbar-nav navbar-right">
 	       		<button onClick={this.handleLogout} className="btn btn-danger">Logout</button>
@@ -96,7 +132,7 @@ class UserMain extends Component {
 		</nav>
 
 		{showAlert ?
-		<Alert bsStyle={alertType} onDismiss={this.toggleAlert}>
+		<Alert bsStyle={alertType} style={{textAlign:"center"}} onDismiss={this.toggleAlert}>
 		  {alertMessage}
 		</Alert>
 		:
@@ -104,9 +140,33 @@ class UserMain extends Component {
 		</div>
 		}
 		<div className = "container">
-			<div className = "row" style={{marginTop:'50px'}}>
-				<UserActionPanel clickAction = {this.handleCalRequest} panelType ={"calendar"}/>
-				<UserActionPanel panelType = {"notifications"}/>
+			<div className="row overflow-hide">
+				<div className = "col col-lg-6">
+					<div className = "course-cart-box">
+					<div className="row course-cart-row">
+					{courseList.map((course) =>
+						user.userprofile.courses.indexOf(course.id) !== -1 ?
+				    	<div className = "col col-sm-4" style={{marginLeft:'60px', marginTop:'20px'}}>
+				    	<CourseCardPreview course={course}/>
+				    	</div>
+				    	:
+				    	<div/>
+					 )}	
+					</div>
+					</div>
+				</div>
+				<div className = "col col-lg-6">
+					<div className = "row" style={{marginTop:'20px'}}>
+						<div className = "col col-lg-12">
+							<UserActionPanel calRequest = {user.userprofile.cal_request} clickAction = {this.handleCalRequest} panelType ={"calendar"}/>
+						</div>
+					</div>
+					<div className = "row" style={{marginTop:'-130px'}}>
+						<div className = "col col-lg-12">
+							<UserActionPanel panelType = {"notifications"}/>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		</div>

@@ -18,6 +18,35 @@ body {
     background: url("../img/bg-pattern.png"), #4B9CD3;
 }
 
+#course-overlay {
+  position: fixed; /* Sit on top of the page content */
+    display: block; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#calendar-overlay {
+ 
+    display: block; /* Hidden by default */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:rgba(0, 0, 0, 0.75);
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    line-height: 12;
+    cursor: auto;
+  }
+
 .loader-center {
   position: absolute;
   left: 50%;

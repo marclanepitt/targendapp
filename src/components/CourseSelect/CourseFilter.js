@@ -11,7 +11,7 @@ class CourseFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosen:"",
+            chosen:this.props.placeholder,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,6 @@ class CourseFilter extends Component {
         this.setState({
             chosen:val,
         });
-        console.log(val);
         this.props.onChange([val,this.props.attribute]);
     }
 

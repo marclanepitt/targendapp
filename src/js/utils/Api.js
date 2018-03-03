@@ -94,13 +94,14 @@ class Api {
       })
   }
 
-  getFilteredCourses(university, dep, num, sect, onSuccess,onError) {
+  getFilteredCourses(university, dep, num, sect, sem, onSuccess,onError) {
       return axios.get(this.generateUrl("courses/list/"+university,"v1"), {
           headers: this.generateTokenHeader(),
           params: {
             department:dep,
             number:num,
             section:sect,
+            semester:sem,
           }
         })
       .then(response => {
@@ -126,9 +127,41 @@ class Api {
     });
   }
 
+  removeCourse(course_id,onSuccess,onError) {
+    Promise.resolve(this.user).then(response => {
+      return axios({ method: 'put', url:  this.generateUrl('users/course-remove/'+response.id+"?course="+course_id,"v1"),
+       headers:this.generateTokenHeader(),
+        }
+       )
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      });   
+    });
+  }
+
   calendarRequest(onSuccess,onError) {
     Promise.resolve(this.user).then(response => {
       return axios({ method: 'get', url:  this.generateUrl('calendar/request',"v1"),
+       headers:this.generateTokenHeader(),
+       params: {
+            id:response.id
+          }
+        }
+       )
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      });   
+    });
+  }
+  calendarUndo(onSuccess,onError) {
+    Promise.resolve(this.user).then(response => {
+      return axios({ method: 'get', url:  this.generateUrl('calendar/cancel',"v1"),
        headers:this.generateTokenHeader(),
        params: {
             id:response.id

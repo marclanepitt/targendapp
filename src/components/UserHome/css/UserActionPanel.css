@@ -7,6 +7,9 @@
 	width: 90%;
 	height: 400px;
 	margin-left: 30px;
+    color: white;
+    font-weight: 900;
+
 }
 
 .image-container-action .after {
@@ -24,3 +27,52 @@
     font-weight: 800;
     font-size: 20px;
 }
+
+.panel-title {
+    margin-top: 30px;
+    font-size: 25px;
+}
+
+.panel-card {
+      background: url("../../../img/bg-pattern.png");
+      background: url("../../../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #4B9CD3);
+      background: url("../../../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #4B9CD3);
+      border:1px black solid !important;
+
+}
+
+.corner-ribbon{
+  width: 400px;
+  background: #e43;
+  position: absolute;
+  top: 25px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+
+.corner-ribbon.bottom-left{
+  top: 90px;
+  left:80px;
+  z-index: 1;
+  transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  font-weight: 900;
+  font-size: 26px;
+}
+.corner-ribbon.straight{
+  top: 90px;
+  left:62px;
+  z-index: 1;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  width: 450px;
+  font-weight: 900;
+  font-size: 26px;
+}
+
+.corner-ribbon.red{background: #e43;}
