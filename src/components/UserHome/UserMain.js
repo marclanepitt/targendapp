@@ -25,6 +25,7 @@ class UserMain extends Component {
 
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleCalRequest = this.handleCalRequest.bind(this);
+		this.handleCancelRequest = this.handleCancelRequest.bind(this);
 		this.toggleAlert = this.toggleAlert.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
 	}
@@ -75,6 +76,33 @@ class UserMain extends Component {
 		Api.logoutUser(onSuccess,onError);
 	}
 
+	handleCancelRequest() {
+		this.setState({
+			loading:true
+		});
+
+		const onSuccess = response => {
+			this.setState({
+				loading:false,
+				showAlert:true,
+				alertMessage:"Successfully cancelled your calendar request",
+				alertType:"success",
+				user:response.data
+			});
+		}
+
+		const onError = err => {
+			this.setState({
+				loading:false,
+				showAlert:true,
+				alertMessage:"Something went wrong in cancelling your calendar request",
+				alertType:"danger"
+			});
+		}
+
+		Api.calendarUndo(onSuccess,onError);
+	}
+
 	handleCalRequest() {
 		this.setState({
 			loading:true
@@ -85,7 +113,8 @@ class UserMain extends Component {
 				loading:false,
 				showAlert:true,
 				alertMessage:"Congrats! We will email you your calendar in 1-2 business days.",
-				alertType:"success"
+				alertType:"success",
+				user:response.data,
 			});
 		}
 
@@ -99,7 +128,7 @@ class UserMain extends Component {
 		}
 
 		Api.calendarRequest(onSuccess,onError);
-	}
+	}	
 	toggleAlert() {
 		this.setState({
 			showAlert: !this.state.showAlert,
@@ -158,7 +187,7 @@ class UserMain extends Component {
 				<div className = "col col-lg-6">
 					<div className = "row" style={{marginTop:'20px'}}>
 						<div className = "col col-lg-12">
-							<UserActionPanel calRequest = {user.userprofile.cal_request} clickAction = {this.handleCalRequest} panelType ={"calendar"}/>
+							<UserActionPanel calRequest = {user.userprofile.cal_request} clickAction = {this.handleCalRequest} handleCancelRequest = {this.handleCancelRequest} panelType ={"calendar"}/>
 						</div>
 					</div>
 					<div className = "row" style={{marginTop:'-130px'}}>

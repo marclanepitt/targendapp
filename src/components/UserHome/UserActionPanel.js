@@ -7,7 +7,7 @@ class UserActionPanel extends Component {
 
   render() {
 
-  	let title,icon,iconSize, message,marginFix,cursor;
+  	let title,icon,iconSize, message,marginFix,cursor,calRequest,clickAction;
 
   	if(this.props.panelType === "calendar") {
   		title = "Request Calendar";
@@ -15,16 +15,29 @@ class UserActionPanel extends Component {
       iconSize = '82px';
       message = "Recieve a calendar with all of your course due dates";
       cursor = "pointer";
+      if(this.props.calRequest === null) {
+        calRequest = {pending:false};
+      } else {
+        calRequest = this.props.calRequest;
+      }
+
+      if(calRequest.pending) {
+        clickAction = ""
+      } else {
+        clickAction = this.props.clickAction
+      }
+
   	} else {
   		title = "Set Notifications";
       icon = "mobile";
       iconSize = '130px';
       message = "Set up text notifications for weekly course updates";
       marginFix = '-1px';
+      calRequest = {};
     }
 
     return (
-      <div className = "panel-wrapper" onClick={this.props.clickAction}>
+      <div className = "panel-wrapper" onClick={clickAction}>
      {this.props.panelType !== "calendar" ?
       <div className="corner-ribbon bottom-left red">COMING SOON</div>
       :
@@ -35,10 +48,10 @@ class UserActionPanel extends Component {
             <div className="card panel-card" style={{height:"250px",cursor:cursor}}>
               <div className="card-block" style={{textAlign:"center"}}>
               <br/>
-              {!this.props.calRequest && this.props.panelType === "calendar"  ?
+              {calRequest.pending && this.props.panelType === "calendar"  ?
               <div id="calendar-overlay">
                 <p style={{height:"20px"}}>You have a pending request </p>
-                <button className="btn btn-sm btn-danger">Cancel</button>
+                <button className="btn btn-sm btn-danger" onClick={this.props.handleCancelRequest}>Cancel Request</button>
               </div>
               :
               <div/>
