@@ -4,11 +4,6 @@ import React, { Component } from 'react';
 //External Css
 import './css/CourseCardPreview.css';
 
-//External Components
-import FontAwesome from 'react-fontawesome';
-
-import ApiInstance from '../../js/utils/Api.js';
-const Api = ApiInstance.instance;
 
 class CourseCardPreview extends Component {
 

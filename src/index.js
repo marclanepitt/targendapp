@@ -6,12 +6,13 @@ import {Route,BrowserRouter,Switch } from "react-router-dom";
 import registerServiceWorker from "./js/registerServiceWorker";
 
 //Components
-import App from "./components/App/App";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import CourseMain from "./components/CourseSelect/CourseMain";
 import UserMain from "./components/UserHome/UserMain";
 import NotFound from "./components/Common/NotFound";
+import PasswordReset from "./components/Login/PasswordReset";
+import PasswordResetConfirm from "./components/Login/PasswordResetConfirm";
 
 
 //External Css
@@ -23,8 +24,9 @@ import "font-awesome/css/font-awesome.css";
 ReactDOM.render((
   <BrowserRouter>
   		<Switch>
-			<Route exact path='/' component={App}/>
 			<Route path='/login' component={Login}/>
+			<Route path='/reset' component={PasswordReset}/>
+			<Route path='/reset-confirm' component={PasswordResetConfirm}/>
 			<Route path='/register' component={Register}/>
 			<Route path='/courses' component = {CourseMain}/>
 			<Route path='/home' component = {UserMain}/>

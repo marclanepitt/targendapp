@@ -10,3 +10,8 @@
 .course-cart-row {
 	height: 350px;
 }
+
+.no-course-message {
+	font-size: 14px;
+	font-weight: 900;
+}

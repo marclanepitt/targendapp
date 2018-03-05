@@ -1,6 +1,5 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { isEmpty } from 'lodash';
 
 
 class Api {
@@ -8,7 +7,7 @@ class Api {
     this.uuid = Cookies.get("uuid") || "";
     this.apiVersion = "v1";
     this.url = "http://localhost:8000/api";
-    this.user = this.getUser();    
+    this.user = {};    
 
   }
 
@@ -59,6 +58,28 @@ class Api {
         this.user = response.data.user;
         this.uuid = response.data.token;
         this.store("uuid", this.uuid);
+        return onSuccess(response);
+      })
+      .catch(err => {
+        return onError(err);
+      });
+  }
+
+  resetPassword(data, onSuccess, onError) {
+    return axios
+      .post(this.generateUrl("auth/password/reset/"),data)
+      .then(response => {
+        return onSuccess(response);
+      })
+      .catch(err => {
+        return onError(err);
+      });
+  }
+
+  confirmResetPassword(data, onSuccess, onError) {
+    return axios
+      .post(this.generateUrl("auth/password/reset/confirm/"),data)
+      .then(response => {
         return onSuccess(response);
       })
       .catch(err => {
@@ -177,6 +198,18 @@ class Api {
     });
   }
 
+  getCourseFilters(onSuccess,onError) {
+     return axios.get(this.generateUrl("courses/filters","v1"), {
+        headers: this.generateTokenHeader()
+      })
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(err => {
+        onError(err);
+      })   
+  }
+
 
 
   //UTILITY FUNCTIONS
@@ -193,16 +226,12 @@ class Api {
   }
 
   getUser() {
-    if (isEmpty(this.user)) {
       return axios.get(this.generateUrl("users/me/","v1"), {
           headers: this.generateTokenHeader()
         })
         .then(response => {
           return response.data;
         });
-    } else {
-      return this.user;
-    }
   }
 
   isAuthenticated() {

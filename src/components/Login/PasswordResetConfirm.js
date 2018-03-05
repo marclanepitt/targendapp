@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import './css/Login.css';
 import ApiInstance from '../../js/utils/Api.js';
-import { Link } from 'react-router-dom';
-import Loader from '../Common/Loader.js'
+import Loader from '../Common/Loader.js';
+import queryString from "query-string";
+import RegisterFormElement from "../Register/RegisterFormElement";
 
 
 const Api = ApiInstance.instance;
 
-class Login extends Component {
+class PasswordResetConfirm extends Component {
 
 	constructor(props) {
 		super(props);
+		var parsed = queryString.parse(this.props.location.search);
 		this.state = {
-			email: "",
-			password:"",
+			new_password1:"",
+			new_password2:"",
 			loading:false,
-			loginError:false,
+			token:parsed.token,
+			uid:parsed.uid,
+			resetError:{},
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+
 	}
 
 	componentDidMount() {
@@ -39,27 +44,32 @@ class Login extends Component {
 		})
 
 		const onSuccess = response => {
-			this.props.history.push('/courses');
+			this.props.history.push('/login');
+			this.setState({
+				loading:false
+			})
 		}
 		const onError = err => {
 			this.setState({
-				loginError:true,
 				loading:false,
+				resetError:err.response.data
 			})
 		}
 
-		const { email, password } = this.state;
+		const { new_password1,new_password2,token,uid } = this.state;
 
         const data = {
-            username:email,
-            password
+        	new_password1,
+            new_password2,
+            token,
+            uid
         };
 
-		Api.loginUser(data,onSuccess,onError);
+		Api.confirmResetPassword(data,onSuccess,onError);
 	}
 
   render() {
-  	let {loginError,loading} = this.state;
+  	let {loading,resetError} = this.state;
     return (
       <div>
       	<Loader loading = {loading} />
@@ -73,28 +83,34 @@ class Login extends Component {
 		        <form  onSubmit={this.handleSubmit}>
 		          <h2 className="login-title">Targenda</h2>
 
-		          {loginError ?
+		          {resetError['token'] || resetError['uid'] ?
 		          	<div style={{color:"#d9534f"}}>
-		          		Incorrect email or password
+		          		Expired, reset password again
 		          	</div>
 		           :
 		           <div>
 		           </div>
 
 		          }
-
-		          <input onChange = {e=>this.handleInputChange(e,"email")} type="email" name="email" placeholder="UNC Email"  className="form-control input-lg" />
-		          
-		          <input type="password" onChange={e=>this.handleInputChange(e,"password")} className="form-control input-lg" id="password" placeholder="Password" />
-		          
+         		  <RegisterFormElement
+	          		type="password"
+	          		placeholder="New Password"
+	          		handleInputChange = {this.handleInputChange}
+	          		name = "new_password1"
+	          		error = {resetError['new_password1']}
+         		  />
+         		  <RegisterFormElement
+	          		type="password"
+	          		placeholder="Confirm Password"
+	          		handleInputChange = {this.handleInputChange}
+	          		name = "new_password2"
+	          		error = {resetError['new_password2']}
+         		  />
 		          
 		          <div className="pwstrength_viewport_progress"></div>
 		          
 		          
-		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Sign in</button>
-		          <div>
-		            <Link to="/register">Create account</Link> or <Link to="/reset">reset password</Link>
-		          </div>
+		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Change Password</button>
 		          
 		        </form>
 		      </section>  
@@ -110,4 +126,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default PasswordResetConfirm;

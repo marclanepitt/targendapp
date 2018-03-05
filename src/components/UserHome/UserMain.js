@@ -173,14 +173,20 @@ class UserMain extends Component {
 				<div className = "col col-lg-6">
 					<div className = "course-cart-box">
 					<div className="row course-cart-row">
-					{courseList.map((course) =>
+					{user.userprofile.courses.length === 0 ?
+						<div className="no-course-message" style={{display:"block",margin:"auto"}}>
+							Add courses at the course select page
+						</div>
+						:
+
+					courseList.map((course) =>
 						user.userprofile.courses.indexOf(course.id) !== -1 ?
 				    	<div className = "col col-sm-4" style={{marginLeft:'60px', marginTop:'20px'}}>
 				    	<CourseCardPreview course={course}/>
 				    	</div>
 				    	:
 				    	<div/>
-					 )}	
+					 )}
 					</div>
 					</div>
 				</div>

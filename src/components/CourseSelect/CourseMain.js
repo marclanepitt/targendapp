@@ -26,6 +26,7 @@ class CourseMain extends Component {
 			numFilter:null,
 			sectFilter:null,
 			showAlert:false,
+			filters:{},
 		}
 		this.handleLogout = this.handleLogout.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
@@ -38,6 +39,19 @@ class CourseMain extends Component {
 		if(Api.isAuthenticated()) {
 			document.body.style.backgroundColor = "white";
 			Promise.resolve(Api.getUser()).then(response=> {
+
+				const onSuccess = filters => {
+					console.log(filters)
+					this.setState({
+						filters:filters.data
+					})
+				}
+				const onError = err=> {
+					console.log(err);
+				}
+
+				Api.getCourseFilters(onSuccess,onError)
+
 				this.setState({
 					loading:false,
 					user:response,
@@ -153,7 +167,7 @@ class CourseMain extends Component {
 	}
 
   render() {
-  	let {loading,courseList,user,showAlert,alertMessage,courseLoading} = this.state;
+  	let {loading,courseList,user,showAlert,alertMessage,courseLoading,filters} = this.state;
     return (
       <div>
       {loading ?
@@ -189,16 +203,16 @@ class CourseMain extends Component {
 
 		<div className = "row search-bar">
 				<div className = "col col-lg-2">
-					<CourseFilter onChange={this.handleFilterChange} options ={[{value:"COMP",label:"COMP"},{value:"ENGL",label:"ENGL"},{value:"SPAN",label:"SPAN"}]} attribute = "Department" />
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['department']} attribute = "Department" />
 				</div>
 				<div className = "col col-lg-1">
-					<CourseFilter onChange={this.handleFilterChange} options ={[{value:325,label:"325"},{value:455,label:"455"},{value:524,label:"524"}]} attribute = "Num" />
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['number']} attribute = "Num" />
 				</div>
 				<div className = "col col-lg-1">
-					<CourseFilter onChange={this.handleFilterChange} options ={[{value:1,label:"001"},{value:2,label:"002"},{value:3,label:"003"}]} attribute = "Sect" />
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['section']} attribute = "Sect" />
 				</div>
 				<div className = "col col-lg-2">
-					<CourseFilter onChange={this.handleFilterChange} options ={[{value:'S18',label:'Spring 2018'},{value:'F18',label:"Fall 2018"},{value:'S19',label:"Spring 2019"}]} placeholder= 'S18' attribute = "Semester" />
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['semester']} placeholder= 'S18' attribute = "Semester" />
 				</div>
 		</div>
 
