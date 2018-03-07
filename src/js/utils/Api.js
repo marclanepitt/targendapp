@@ -134,7 +134,7 @@ class Api {
   }
 
   addCourse(course_id,onSuccess,onError) {
-    Promise.resolve(this.user).then(response => {
+    Promise.resolve(this.getUser()).then(response => {
       return axios({ method: 'put', url:  this.generateUrl('users/course-add/'+response.id+"?course="+course_id,"v1"),
        headers:this.generateTokenHeader(),
         }
@@ -149,7 +149,7 @@ class Api {
   }
 
   removeCourse(course_id,onSuccess,onError) {
-    Promise.resolve(this.user).then(response => {
+    Promise.resolve(this.getUser()).then(response => {
       return axios({ method: 'put', url:  this.generateUrl('users/course-remove/'+response.id+"?course="+course_id,"v1"),
        headers:this.generateTokenHeader(),
         }
@@ -164,7 +164,7 @@ class Api {
   }
 
   calendarRequest(onSuccess,onError) {
-    Promise.resolve(this.user).then(response => {
+    Promise.resolve(this.getUser()).then(response => {
       return axios({ method: 'get', url:  this.generateUrl('calendar/request',"v1"),
        headers:this.generateTokenHeader(),
        params: {
@@ -181,7 +181,7 @@ class Api {
     });
   }
   calendarUndo(onSuccess,onError) {
-    Promise.resolve(this.user).then(response => {
+    Promise.resolve(this.getUser()).then(response => {
       return axios({ method: 'get', url:  this.generateUrl('calendar/cancel',"v1"),
        headers:this.generateTokenHeader(),
        params: {

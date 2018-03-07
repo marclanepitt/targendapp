@@ -28,6 +28,8 @@ class UserMain extends Component {
 		this.handleCancelRequest = this.handleCancelRequest.bind(this);
 		this.toggleAlert = this.toggleAlert.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
+		document.getElementsByTagName('body')[0].style.overflowY = "hidden";
+
 	}
 
 	componentDidMount() {

@@ -32,6 +32,7 @@ class CourseMain extends Component {
 		this.generateCourses = this.generateCourses.bind(this);
 		this.toggleAlert = this.toggleAlert.bind(this);
 		this.setCourseLoading = this.setCourseLoading.bind(this);
+		document.getElementsByTagName('body')[0].style.overflowY = "scroll";
 
 	}
 
@@ -169,7 +170,7 @@ class CourseMain extends Component {
   render() {
   	let {loading,courseList,user,showAlert,alertMessage,courseLoading,filters} = this.state;
     return (
-      <div>
+      <div className="overlow-hide">
       {loading ?
       	<Loader loading={loading}/>
       :
@@ -213,6 +214,9 @@ class CourseMain extends Component {
 				</div>
 				<div className = "col col-lg-2">
 					<CourseFilter onChange={this.handleFilterChange} options ={filters['semester']} placeholder= 'S18' attribute = "Semester" />
+				</div>
+				<div style={{marginLeft:'460px',marginTop:'10px'}}>
+					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link">Don't see your class?</a>
 				</div>
 		</div>
 
