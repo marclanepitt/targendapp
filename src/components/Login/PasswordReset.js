@@ -83,7 +83,7 @@ class PasswordReset extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <h2 className="login-title">Targenda</h2>
+		          <h2 className="login-title">ClassCal</h2>
 
 		          {loginError ?
 		          	<div style={{color:"#d9534f"}}>

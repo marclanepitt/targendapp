@@ -179,7 +179,7 @@ class CourseMain extends Component {
 		  <div className="container-fluid">
 		    <div className="navbar-header">
 		      <a className="navbar-brand">
-		        Targenda
+		        ClassCal
 		      </a>
 		    </div>
 		     <ul className="nav navbar-nav">

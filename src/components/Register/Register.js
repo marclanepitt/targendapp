@@ -100,7 +100,7 @@ class Register extends Component {
 		    <div className="col-md-6">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <h2 className="login-title">Targenda</h2>
+		          <h2 className="login-title">ClassCal</h2>
 		          <div className="col-md-8" style={{display:'block',margin:'auto'}}>
 		          	<RegisterFormElement
 		          		type="text"
