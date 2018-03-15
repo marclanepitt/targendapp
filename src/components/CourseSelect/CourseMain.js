@@ -40,7 +40,9 @@ class CourseMain extends Component {
 		if(Api.isAuthenticated()) {
 			document.body.style.backgroundColor = "white";
 			Promise.resolve(Api.getUser()).then(response=> {
-
+				if(!response.userprofile) {
+					this.props.history.push("/login");
+				}
 				const onSuccess = filters => {
 					this.setState({
 						filters:filters.data

@@ -4,7 +4,7 @@ import ApiInstance from '../../js/utils/Api.js';
 import { Link } from 'react-router-dom';
 import Loader from '../Common/Loader.js';
 import logo from '../../img/classcalicon.jpg';
-
+import {Alert} from 'react-bootstrap';
 
 const Api = ApiInstance.instance;
 
@@ -75,9 +75,9 @@ class Login extends Component {
 		          <img alt="ClassCal" className="login-title" src = {logo}></img>
 
 		          {loginError ?
-		          	<div style={{color:"#d9534f"}}>
+		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>
 		          		Incorrect email or password
-		          	</div>
+		          	</Alert>
 		           :
 		           <div>
 		           </div>

@@ -100,7 +100,7 @@ class Register extends Component {
 		    	Let's get organized, instantly!
 		    	</div>
 		    	<div className="register-subsaying">
-		    	Pick, Request, Done
+		    	Pick<span className="subsaying-period">.</span> Request<span className="subsaying-period">.</span> Done<span className="subsaying-period">.</span>
 		    	</div>
 		    	</div>
 		    	<div className="row">

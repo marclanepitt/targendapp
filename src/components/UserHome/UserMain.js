@@ -37,6 +37,9 @@ class UserMain extends Component {
 		if(Api.isAuthenticated()) {
 			document.body.style.backgroundColor = "white";
 			Promise.resolve(Api.getUser()).then(response=> {
+				if(!response.userprofile) {
+					this.props.history.push("/login");
+				}
 				this.setState({
 					loading:false,
 					user:response,

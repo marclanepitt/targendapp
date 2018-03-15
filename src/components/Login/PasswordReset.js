@@ -88,9 +88,9 @@ class PasswordReset extends Component {
 		          <img alt="ClassCal" src={logo} className="login-title"/>
 
 		          {loginError ?
-		          	<div style={{color:"#d9534f"}}>
-		          		This email was not found in our system
-		          	</div>
+		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>
+		          		Email not found in our system
+		          	</Alert>
 		           :
 		           <div>
 		           </div>
