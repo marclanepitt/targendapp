@@ -4,6 +4,7 @@ import ApiInstance from '../../js/utils/Api.js';
 import Loader from '../Common/Loader.js';
 import queryString from "query-string";
 import RegisterFormElement from "../Register/RegisterFormElement";
+import logo from '../../img/classcalicon.jpg';
 
 
 const Api = ApiInstance.instance;
@@ -27,7 +28,7 @@ class PasswordResetConfirm extends Component {
 	}
 
 	componentDidMount() {
-		document.body.style.backgroundColor = "#4B9CD3";
+		document.body.style.backgroundColor = "#2B73AD";
 	}
 
 	handleInputChange(e,field) {
@@ -81,7 +82,7 @@ class PasswordResetConfirm extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <h2 className="login-title">ClassCal</h2>
+		          <img src={logo} alt="ClassCal" className="login-title"/>
 
 		          {resetError['token'] || resetError['uid'] ?
 		          	<div style={{color:"#d9534f"}}>
@@ -110,7 +111,7 @@ class PasswordResetConfirm extends Component {
 		          <div className="pwstrength_viewport_progress"></div>
 		          
 		          
-		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Change Password</button>
+		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block" style={{backgroundColor:'#2B73AD'}}>Change Password</button>
 		          
 		        </form>
 		      </section>  

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './css/Login.css';
 import ApiInstance from '../../js/utils/Api.js';
 import { Link } from 'react-router-dom';
-import Loader from '../Common/Loader.js'
+import Loader from '../Common/Loader.js';
+import logo from '../../img/classcalicon.jpg';
 
 
 const Api = ApiInstance.instance;
@@ -22,7 +23,7 @@ class Login extends Component {
 	}
 
 	componentDidMount() {
-		document.body.style.backgroundColor = "#4B9CD3";
+		document.body.style.backgroundColor = "#2B73AD";
 	}
 
 	handleInputChange(e,field) {
@@ -71,7 +72,7 @@ class Login extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <h2 className="login-title">ClassCal</h2>
+		          <img alt="ClassCal" className="login-title" src = {logo}></img>
 
 		          {loginError ?
 		          	<div style={{color:"#d9534f"}}>
@@ -91,7 +92,7 @@ class Login extends Component {
 		          <div className="pwstrength_viewport_progress"></div>
 		          
 		          
-		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Sign in</button>
+		          <button type="submit" name="go" style={{backgroundColor:'#2B73AD'}}className="btn btn-lg btn-primary btn-block">Sign in</button>
 		          <div>
 		            <Link to="/register">Create account</Link> or <Link to="/reset">reset password</Link>
 		          </div>

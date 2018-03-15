@@ -47,10 +47,9 @@ form  {
 }
 
 .login-title {
-	text-align: center;
-	color: black;
-	font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-	font-weight: 900;
-	letter-spacing: 1px;
+	width: 170px;
+	margin:auto;
+	display: block;
+	margin-bottom: -1px;
 }
 

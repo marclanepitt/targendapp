@@ -5,8 +5,9 @@ import Loader from '../Common/Loader.js';
 import CourseCard from './CourseCard.js';
 import CourseLoader from './CourseLoader.js';
 import CourseFilter from './CourseFilter.js';
-import {Alert} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import logo from '../../img/classcalicon.jpg';
+import {AlertList } from "react-bs-notifier";
 
 const Api = ApiInstance.instance;
 let departmentFilter = null;
@@ -25,12 +26,11 @@ class CourseMain extends Component {
 			departmentFilter:null,
 			numFilter:null,
 			sectFilter:null,
-			showAlert:false,
+			alerts: [],
 			filters:{},
 		}
 		this.handleLogout = this.handleLogout.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
-		this.toggleAlert = this.toggleAlert.bind(this);
 		this.setCourseLoading = this.setCourseLoading.bind(this);
 		document.getElementsByTagName('body')[0].style.overflowY = "scroll";
 
@@ -42,13 +42,11 @@ class CourseMain extends Component {
 			Promise.resolve(Api.getUser()).then(response=> {
 
 				const onSuccess = filters => {
-					console.log(filters)
 					this.setState({
 						filters:filters.data
 					})
 				}
 				const onError = err=> {
-					console.log(err);
 				}
 
 				Api.getCourseFilters(onSuccess,onError)
@@ -138,26 +136,34 @@ class CourseMain extends Component {
 	}
 
 	handleCourseAdd = data => {
+		const newAlert ={
+			id: (new Date()).getTime(),
+			type: "success",
+			headline: "Success!",
+			message: "You successfully added " + data[1],
+		};
+
 		this.setState({
 			user:data[0],
-			showAlert:true,
-			alertMessage: "You successfully added " + data[1],
 			courseLoading:false,
+			alerts: [...this.state.alerts, newAlert]
+
 		})
 	}
 
 	handleCourseRemove = data => {
+		const newAlert ={
+			id: (new Date()).getTime(),
+			type: "danger",
+			headline: "Bye Bye!",
+			message: "You successfully removed " + data[1],
+		};
+
 		this.setState({
 			user:data[0],
-			showAlert:true,
-			alertMessage: "You successfully removed " + data[1],
 			courseLoading:false,
-		})
-	}
+			alerts: [...this.state.alerts, newAlert]
 
-	toggleAlert() {
-		this.setState({
-			showAlert: !this.state.showAlert,
 		})
 	}
 
@@ -166,9 +172,22 @@ class CourseMain extends Component {
 			courseLoading:true,
 		})
 	}
+	onAlertDismissed(alert) {
+		const alerts = this.state.alerts;
+
+		// find the index of the alert that was dismissed
+		const idx = alerts.indexOf(alert);
+
+		if (idx >= 0) {
+			this.setState({
+				// remove the alert from the array
+				alerts: [...alerts.slice(0, idx), ...alerts.slice(idx + 1)]
+			});
+		}
+	}
 
   render() {
-  	let {loading,courseList,user,showAlert,alertMessage,courseLoading,filters} = this.state;
+  	let {loading,courseList,user,courseLoading,filters} = this.state;
     return (
       <div className="overlow-hide">
       {loading ?
@@ -179,7 +198,7 @@ class CourseMain extends Component {
 		  <div className="container-fluid">
 		    <div className="navbar-header">
 		      <a className="navbar-brand">
-		        ClassCal
+		        <img alt="ClassCal" src={logo} className="nav-logo"/>
 		      </a>
 		    </div>
 		     <ul className="nav navbar-nav">
@@ -193,14 +212,13 @@ class CourseMain extends Component {
 		  </div>
 		</nav>
 
-		{showAlert ?
-		<Alert bsStyle="success" style={{textAlign:"center"}} onDismiss={this.toggleAlert}>
-		  {alertMessage}
-		</Alert>
-		:
-		<div>
-		</div>
-		}
+		<AlertList
+			position="top-right"
+			alerts={this.state.alerts}
+			timeout={2000}
+			dismissTitle="Begone!"
+			onDismiss={this.onAlertDismissed.bind(this)}
+		/>
 
 		<div className = "row search-bar">
 				<div className = "col col-lg-2">
@@ -215,7 +233,8 @@ class CourseMain extends Component {
 				<div className = "col col-lg-2">
 					<CourseFilter onChange={this.handleFilterChange} options ={filters['semester']} placeholder= 'S18' attribute = "Semester" />
 				</div>
-				<div style={{marginLeft:'460px',marginTop:'10px'}}>
+				<div className = "col col-lg-4"/>
+				<div className = "col col-lg-2" style={{marginTop:'8px'}}>
 					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link">Don't see your class?</a>
 				</div>
 		</div>

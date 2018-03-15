@@ -7,6 +7,7 @@ class Api {
     this.uuid = Cookies.get("uuid") || "";
     this.apiVersion = "v1";
     this.url = "https://class-cal-api.herokuapp.com/api";
+    //this.url = "https://class-cal-api.herokuapp.com/api";
     this.user = {};    
 
   }
@@ -40,7 +41,10 @@ class Api {
     return axios
       .post(this.generateUrl("auth/registration/"), data)
       .then(response => {
-        onSuccess(response);
+        this.user = response.data;
+        this.uuid = response.data.token;
+        this.store("uuid", this.uuid);
+        return onSuccess(response);
       })
       .catch(err => {
         onError(err);

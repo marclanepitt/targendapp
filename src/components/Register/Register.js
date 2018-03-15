@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import "./css/Register.css";
 import RegisterFormElement from './RegisterFormElement.js';
 import Loader from "../Common/Loader.js";
+import logo from '../../img/classcalicon.jpg';
+import screenshot from '../../img/app-screenshot.png';
+import "html5-device-mockups/dist/device-mockups.min.css";
+
 
 const Api = ApiInstance.instance;
 
@@ -17,12 +21,9 @@ class Register extends Component {
 			password2:"",
 			first_name:"",
 			last_name:"",
-			graduation_year:"",
-			major:"",
 			errors:{},
 			successes:{},
 			loading: false,
-			dateHack:"text",
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,7 +31,7 @@ class Register extends Component {
 	}
 
 	componentDidMount() {
-		document.body.style.backgroundColor = "#4B9CD3";
+		document.body.style.backgroundColor = "#2B73AD";
 	}
 
 	handleInputChange(e,field) {
@@ -59,7 +60,7 @@ class Register extends Component {
 
 		}
 
-		const { email, password1,password2,first_name,last_name,major,graduation_year } = this.state;
+		const { email, password1,password2,first_name,last_name } = this.state;
 
         const data = {
 		    email,
@@ -67,8 +68,6 @@ class Register extends Component {
 		    password2,
 		    first_name,
 		    last_name,
-		    major,
-		    graduation_year,
         };
 
 		Api.registerUser(data,onSuccess,onError);
@@ -88,20 +87,37 @@ class Register extends Component {
 
 
   render() {
-  	let {errors,dateHack,successes,loading} = this.state;
+  	let {errors,successes,loading} = this.state;
     return (
       <div>
       <Loader loading={loading}/>
 		<div className="container">
 		  
 		  <div className="row" id="pwd-container">
-		    <div className="col-md-3"></div>
+		    <div className="col-lg-7" style={{padding:'67px'}}>
+		    	<div className="row">
+		    	<div className="register-saying">
+		    	Let's get organized, instantly!
+		    	</div>
+		    	<div className="register-subsaying">
+		    	Pick, Request, Done
+		    	</div>
+		    	</div>
+		    	<div className="row">
+		          <div className="device-wrapper">
+					  <div className="device" data-device="iMac" data-orientation="portrait" data-color="black">
+					    <div className="screen" style={{backgroundImage:"url("+screenshot+")"}}>
+					    </div>
+					  </div>
+					</div>
+				</div>
+		    </div>
 		    
-		    <div className="col-md-6">
+		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <h2 className="login-title">ClassCal</h2>
-		          <div className="col-md-8" style={{display:'block',margin:'auto'}}>
+		          <img alt="ClassCal" src={logo} className="login-title register-title"></img>
+		          <div className="col-md-12" style={{display:'block',margin:'auto'}}>
 		          	<RegisterFormElement
 		          		type="text"
 		          		placeholder="UNC Email"
@@ -138,27 +154,12 @@ class Register extends Component {
 		          		name = "last_name"
 		          		error = {errors['last_name']}
 		          	/>
-		          	<RegisterFormElement
-		          		type={dateHack}
-		          		placeholder="Graduation Date"
-		          		handleInputChange = {this.handleInputChange}
-		          		onFocus={this.dateHackToggle}
-					    onBlur={this.dateHackToggle}
-		          		name = "graduation_year"
-		          		error = {errors['graduation_year']}
-		          	/>
-		          	<RegisterFormElement
-		          		type="text"
-		          		placeholder="Major"
-		          		handleInputChange = {this.handleInputChange}
-		          		name = "major"
-		          		error = {errors['major']}
-		          	/>
 	  
 		          <div className="pwstrength_viewport_progress"></div>
 		          
-		          
-		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Register</button>
+		          <div className="col col-md-11" style={{left:"12px"}}>
+		          <button type="submit" name="go" style={{backgroundColor:'#2B73AD'}}className="btn btn-lg btn-primary btn-block">Register</button>
+		          </div>
 		          <div>
 		            Already have an account? <Link to="/login">Login</Link>
 		          </div>

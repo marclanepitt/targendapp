@@ -34,9 +34,7 @@
 }
 
 .panel-card {
-      background: url("../../../img/bg-pattern.png");
-      background: url("../../../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #4B9CD3);
-      background: url("../../../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #4B9CD3);
+      background: url("../../../img/bg-pattern.png"),#2B73AD !important;
       border:1px black solid !important;
 
 }

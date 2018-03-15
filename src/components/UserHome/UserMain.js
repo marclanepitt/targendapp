@@ -4,8 +4,10 @@ import {Link} from "react-router-dom";
 import UserActionPanel from "./UserActionPanel.js";
 import CourseCardPreview from "./CourseCardPreview";
 import Loader from "../Common/Loader.js";
-import {Alert} from "react-bootstrap";
 import "./css/UserMain.css";
+import logo from '../../img/classcalicon.jpg';
+import {AlertList } from "react-bs-notifier";
+
 
 const Api = ApiInstance.instance;
 
@@ -16,7 +18,7 @@ class UserMain extends Component {
 
 		this.state = {
 			loading:true,
-			showAlert:false,
+			alerts:[],
 			alertMessage:"",
 			alertType:"",
 			courseList:[],
@@ -26,7 +28,6 @@ class UserMain extends Component {
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleCalRequest = this.handleCalRequest.bind(this);
 		this.handleCancelRequest = this.handleCancelRequest.bind(this);
-		this.toggleAlert = this.toggleAlert.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
 		document.getElementsByTagName('body')[0].style.overflowY = "hidden";
 
@@ -84,21 +85,33 @@ class UserMain extends Component {
 		});
 
 		const onSuccess = response => {
+			const newAlert ={
+				id: (new Date()).getTime(),
+				type: "danger",
+				headline: "Undone!",
+				message: "Successfully cancelled your calendar request"
+			};
+
 			this.setState({
+				user:response.data,
 				loading:false,
-				showAlert:true,
-				alertMessage:"Successfully cancelled your calendar request",
-				alertType:"success",
-				user:response.data
+				alerts: [...this.state.alerts, newAlert]
+
 			});
 		}
 
 		const onError = err => {
+			const newAlert ={
+				id: (new Date()).getTime(),
+				type: "warning",
+				headline: "Uh oh!",
+				message: "Something went wrong in cancelling your request"
+			};
+
 			this.setState({
 				loading:false,
-				showAlert:true,
-				alertMessage:"Something went wrong in cancelling your calendar request",
-				alertType:"danger"
+				alerts: [...this.state.alerts, newAlert]
+
 			});
 		}
 
@@ -111,35 +124,56 @@ class UserMain extends Component {
 		});
 
 		const onSuccess = response => {
+			const newAlert ={
+				id: (new Date()).getTime(),
+				type: "success",
+				headline: "Woo Hoo!",
+				message: "Thank you! We will get you your calendar ASAP"
+			};
+
 			this.setState({
-				loading:false,
-				showAlert:true,
-				alertMessage:"Congrats! We will email you your calendar in 1-2 business days.",
-				alertType:"success",
 				user:response.data,
+				loading:false,
+				alerts: [...this.state.alerts, newAlert]
+
 			});
 		}
 
 		const onError = err => {
+			const newAlert ={
+				id: (new Date()).getTime(),
+				type: "warning",
+				headline: "Uh oh!",
+				message: "Something went wrong in sending your request"
+			};
+
 			this.setState({
 				loading:false,
-				showAlert:true,
-				alertMessage:"Something went wrong in requesting your calendar",
-				alertType:"danger"
+				alerts: [...this.state.alerts, newAlert]
+
 			});
 		}
 
 		Api.calendarRequest(onSuccess,onError);
 	}	
-	toggleAlert() {
-		this.setState({
-			showAlert: !this.state.showAlert,
-		})
+
+	onAlertDismissed(alert) {
+		const alerts = this.state.alerts;
+
+		// find the index of the alert that was dismissed
+		const idx = alerts.indexOf(alert);
+
+		if (idx >= 0) {
+			this.setState({
+				// remove the alert from the array
+				alerts: [...alerts.slice(0, idx), ...alerts.slice(idx + 1)]
+			});
+		}
 	}
 
   render() {
 
-  	let {loading,showAlert,alertMessage,alertType,courseList,user} = this.state;
+  	let {loading,courseList,user} = this.state;
     return (
       <div className="overflow-hide">
       {loading ?
@@ -149,8 +183,8 @@ class UserMain extends Component {
 	  	<nav className="navbar navbar-default">
 		  <div className="container-fluid">
 		    <div className="navbar-header">
-		      <a className="navbar-brand">
-		        ClassCal
+		      <a className="navbar-brand ">
+		        <img alt="ClassCal" src={logo} className="nav-logo"/>
 		      </a>
 		    </div>
 		     <ul className="nav navbar-nav">
@@ -162,14 +196,13 @@ class UserMain extends Component {
 		  </div>
 		</nav>
 
-		{showAlert ?
-		<Alert bsStyle={alertType} style={{textAlign:"center"}} onDismiss={this.toggleAlert}>
-		  {alertMessage}
-		</Alert>
-		:
-		<div>
-		</div>
-		}
+		<AlertList
+			position="top-right"
+			alerts={this.state.alerts}
+			timeout={5000}
+			onDismiss={this.onAlertDismissed.bind(this)}
+		/>
+
 		<div className = "container">
 			<div className="row overflow-hide">
 				<div className = "col col-lg-6">

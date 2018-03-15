@@ -51,7 +51,7 @@ class CourseCard extends Component {
         course = "";
     }
     return (
-    <div className="col-sm-3">
+    <div className="col-sm-3" style={{maxWidth: '350px'}}>
         <div className="card-flip">
             <div className="flip">
                 <div className="front">

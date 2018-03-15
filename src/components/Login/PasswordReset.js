@@ -3,6 +3,8 @@ import './css/Login.css';
 import ApiInstance from '../../js/utils/Api.js';
 import Loader from '../Common/Loader.js';
 import {Alert} from 'react-bootstrap';
+import logo from '../../img/classcalicon.jpg';
+
 
 
 const Api = ApiInstance.instance;
@@ -22,7 +24,7 @@ class PasswordReset extends Component {
 	}
 
 	componentDidMount() {
-		document.body.style.backgroundColor = "#4B9CD3";
+		document.body.style.backgroundColor = "#2B73AD";
 	}
 
 	handleInputChange(e,field) {
@@ -83,7 +85,7 @@ class PasswordReset extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <h2 className="login-title">ClassCal</h2>
+		          <img alt="ClassCal" src={logo} className="login-title"/>
 
 		          {loginError ?
 		          	<div style={{color:"#d9534f"}}>
@@ -101,7 +103,7 @@ class PasswordReset extends Component {
 		          <div className="pwstrength_viewport_progress"></div>
 		          
 		          
-		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block">Reset Password</button>
+		          <button type="submit" name="go" style={{backgroundColor:'#2B73AD'}}className="btn btn-lg btn-primary btn-block">Reset Password</button>
 		          
 		        </form>
 		      </section>  

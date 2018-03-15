@@ -1,3 +1,27 @@
 .help-block {
 	color:darkred;
 }
+
+.register-title {
+	margin:auto;
+	display: block;
+}
+
+.register-saying {
+	margin:auto;
+	font-size: 40px;
+	font-weight: 900;
+	color: white;
+	width: 150%;
+}
+
+.register-subsaying {
+	color: white;
+	margin:auto;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+.device-wrapper {
+	margin:auto;
+	max-width: 400px !important;
+}
