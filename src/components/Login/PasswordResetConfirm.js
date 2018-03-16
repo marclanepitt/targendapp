@@ -5,6 +5,7 @@ import Loader from '../Common/Loader.js';
 import queryString from "query-string";
 import RegisterFormElement from "../Register/RegisterFormElement";
 import logo from '../../img/classcalicon.jpg';
+import {Alert} from 'react-bootstrap';
 
 
 const Api = ApiInstance.instance;
@@ -85,9 +86,9 @@ class PasswordResetConfirm extends Component {
 		          <img src={logo} alt="ClassCal" className="login-title"/>
 
 		          {resetError['token'] || resetError['uid'] ?
-		          	<div style={{color:"#d9534f"}}>
-		          		Expired, reset password again
-		          	</div>
+		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>
+		          		Email not found in our system
+		          	</Alert>
 		           :
 		           <div>
 		           </div>
