@@ -87,7 +87,7 @@ class PasswordResetConfirm extends Component {
 
 		          {resetError['token'] || resetError['uid'] ?
 		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>
-		          		Email not found in our system
+		          		This link is expired.
 		          	</Alert>
 		           :
 		           <div>
