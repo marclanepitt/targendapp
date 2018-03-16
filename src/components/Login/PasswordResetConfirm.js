@@ -110,9 +110,9 @@ class PasswordResetConfirm extends Component {
 		          
 		          <div className="pwstrength_viewport_progress"></div>
 		          
-		          
+		          <div className="col-lg-11" style={{display:"block",margin:"auto"}}>
 		          <button type="submit" name="go" className="btn btn-lg btn-primary btn-block" style={{backgroundColor:'#2B73AD'}}>Change Password</button>
-		          
+		          </div>
 		        </form>
 		      </section>  
 		      </div>
