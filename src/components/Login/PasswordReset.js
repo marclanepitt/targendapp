@@ -45,7 +45,7 @@ class PasswordReset extends Component {
 			// this.props.history.push('/login');
 			this.setState({
 				loading:false,
-				showAlert:true
+				showAlert:true,
 				loginError:false,
 			})
 		}
