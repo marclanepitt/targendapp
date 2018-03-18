@@ -6,8 +6,8 @@ class Api {
   constructor() {
     this.uuid = Cookies.get("uuid") || "";
     this.apiVersion = "v1";
+    //this.url = "http://localhost:8000/api";
     this.url = "https://class-cal-api.herokuapp.com/api";
-    //this.url = "https://class-cal-api.herokuapp.com/api";
     this.user = {};    
 
   }

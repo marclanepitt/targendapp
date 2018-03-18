@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Route,BrowserRouter,Switch } from "react-router-dom";
 import registerServiceWorker from "./js/registerServiceWorker";
+import HttpsRedirect from 'react-https-redirect';
 
 //Components
 import Login from "./components/Login/Login";
@@ -23,6 +24,7 @@ import "font-awesome/css/font-awesome.css";
 
 ReactDOM.render((
   <BrowserRouter>
+  	<HttpsRedirect>
   		<Switch>
 			<Route path='/login' component={Login}/>
 			<Route path='/reset' component={PasswordReset}/>
@@ -32,6 +34,7 @@ ReactDOM.render((
 			<Route path='/home' component = {UserMain}/>
 			<Route path="*" component={NotFound} />
 		</Switch>
+	</HttpsRedirect>
   </BrowserRouter>
 ), document.getElementById('root'))
 registerServiceWorker();

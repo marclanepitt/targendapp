@@ -46,6 +46,7 @@ class PasswordReset extends Component {
 			this.setState({
 				loading:false,
 				showAlert:true
+				loginError:false,
 			})
 		}
 		const onError = err => {
