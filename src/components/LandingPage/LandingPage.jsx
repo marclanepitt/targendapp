@@ -6,7 +6,9 @@ import screenshot from '../../img/app-screenshot.png';
 import "html5-device-mockups/dist/device-mockups.min.css";
 import SimpleLineIcon from 'react-simple-line-icons';
 import logo_tp from "../../img/class-cal-tp.png";
-
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-115975493-1');
+ReactGA.pageview("Landing Page");
 
 export default class LandingPage extends React.Component {
 	constructor() {
@@ -40,7 +42,6 @@ export default class LandingPage extends React.Component {
 
 
 	animateAndScroll(e) {
-		console.log(e.target.id)
 		if(e.target.id === "#top") {
 		$('html, body').animate({
 			scrollTop: 0
@@ -50,6 +51,10 @@ export default class LandingPage extends React.Component {
 				scrollTop: $(e.target.id).offset().top
 			}, 1000);
 		}
+		ReactGA.event({
+			category:"Navigation",
+			action:"Navigated to " + e.target.id,
+		});
 	}
 
 	renderSteps(i) {
@@ -93,10 +98,18 @@ export default class LandingPage extends React.Component {
 	}
 
 	pushToLogin() {
+		ReactGA.event({
+			category:"CTA",
+			action:"Went to login page",
+		});
 		this.props.history.push("/login");
 	}
 	pushToRegister() {
 		this.props.history.push("/register");
+		ReactGA.event({
+			category:"CTA",
+			action:"Went to Register Page",
+		});
 	}
 
 	render() {
