@@ -20,6 +20,7 @@ class Login extends Component {
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.pushToHome = this.pushToHome.bind(this);
 	}
 
 	componentDidMount() {
@@ -59,6 +60,10 @@ class Login extends Component {
 		Api.loginUser(data,onSuccess,onError);
 	}
 
+	pushToHome() {
+		this.props.history.push("/");
+	}
+
   render() {
   	let {loginError,loading} = this.state;
     return (
@@ -72,7 +77,7 @@ class Login extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <img alt="ClassCal" className="login-title" src = {logo}></img>
+		          <img alt="ClassCal" style={{cursor:"pointer"}} onClick={this.pushToHome} className="login-title" src = {logo}></img>
 
 		          {loginError ?
 		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>

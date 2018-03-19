@@ -40,7 +40,6 @@ export default class LandingPage extends React.Component {
 		};
 	}
 
-
 	animateAndScroll(e) {
 		if(e.target.id === "#top") {
 		$('html, body').animate({
@@ -98,11 +97,11 @@ export default class LandingPage extends React.Component {
 	}
 
 	pushToLogin() {
+		this.props.history.push("/login");
 		ReactGA.event({
 			category:"CTA",
 			action:"Went to login page",
 		});
-		this.props.history.push("/login");
 	}
 	pushToRegister() {
 		this.props.history.push("/register");
@@ -133,6 +132,7 @@ export default class LandingPage extends React.Component {
 			  </div>
 			</nav>
 			<div id="header" className="landing-page grid">
+			<div className="js-odoo"></div>
 				<div className="main-title-container">
 					<div className="grid-row-item-row title-row">
 						<div className="grid-item title">We. Organize. You.</div>

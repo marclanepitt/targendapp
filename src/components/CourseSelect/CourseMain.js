@@ -32,6 +32,7 @@ class CourseMain extends Component {
 		this.handleLogout = this.handleLogout.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
 		this.setCourseLoading = this.setCourseLoading.bind(this);
+		this.pushToHome = this.pushToHome.bind(this);
 		document.getElementsByTagName('body')[0].style.overflowY = "scroll";
 
 	}
@@ -188,6 +189,10 @@ class CourseMain extends Component {
 		}
 	}
 
+	pushToHome() {
+		this.props.history.push("/");
+	}
+
   render() {
   	let {loading,courseList,user,courseLoading,filters} = this.state;
     return (
@@ -200,7 +205,7 @@ class CourseMain extends Component {
 		  <div className="container-fluid">
 		    <div className="navbar-header">
 		      <a className="navbar-brand">
-		        <img alt="ClassCal" src={logo} className="nav-logo"/>
+		        <img alt="ClassCal" style={{cursor:"pointer"}} onClick={this.pushToHome} src={logo} className="nav-logo"/>
 		      </a>
 		    </div>
 		     <ul className="nav navbar-nav">

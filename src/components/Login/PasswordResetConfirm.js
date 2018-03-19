@@ -25,6 +25,7 @@ class PasswordResetConfirm extends Component {
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.pushToHome = this.pushToHome.bind(this);
 
 	}
 
@@ -70,6 +71,11 @@ class PasswordResetConfirm extends Component {
 		Api.confirmResetPassword(data,onSuccess,onError);
 	}
 
+	pushToHome() {
+		this.props.history.push("/");
+	}
+
+
   render() {
   	let {loading,resetError} = this.state;
     return (
@@ -83,7 +89,7 @@ class PasswordResetConfirm extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <img src={logo} alt="ClassCal" className="login-title"/>
+		          <img style={{cursor:"pointer"}} onClick={this.pushToHome} src={logo} alt="ClassCal" className="login-title"/>
 
 		          {resetError['token'] || resetError['uid'] ?
 		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>

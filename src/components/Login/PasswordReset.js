@@ -21,6 +21,7 @@ class PasswordReset extends Component {
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.pushToHome = this.pushToHome.bind(this);
 	}
 
 	componentDidMount() {
@@ -66,6 +67,11 @@ class PasswordReset extends Component {
 		Api.resetPassword(data,onSuccess,onError);
 	}
 
+	pushToHome() {
+		this.props.history.push("/");
+	}
+
+
   render() {
   	let {loginError,loading,showAlert} = this.state;
     return (
@@ -86,7 +92,7 @@ class PasswordReset extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <img alt="ClassCal" src={logo} className="login-title"/>
+		          <img style={{cursor:"pointer"}} onClick={this.pushToHome}  alt="ClassCal" src={logo} className="login-title"/>
 
 		          {loginError ?
 		          	<Alert bsStyle="danger" style={{textAlign:"center", marginTop:'10px'}}>

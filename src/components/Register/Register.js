@@ -28,6 +28,7 @@ class Register extends Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.dateHackToggle = this.dateHackToggle.bind(this);
+		this.pushToHome = this.pushToHome.bind(this);
 	}
 
 	componentDidMount() {
@@ -85,6 +86,10 @@ class Register extends Component {
 		}
 	}
 
+	pushToHome() {
+		this.props.history.push("/");
+	}
+
 
   render() {
   	let {errors,successes,loading} = this.state;
@@ -116,7 +121,7 @@ class Register extends Component {
 		    <div className="col-md-4">
 		      <section className="login-form">
 		        <form  onSubmit={this.handleSubmit}>
-		          <img alt="ClassCal" src={logo} className="login-title register-title"></img>
+		          <img alt="ClassCal" style={{cursor:"pointer"}} onClick={this.pushToHome}  src={logo} className="login-title register-title"></img>
 		          <div className="col-md-12" style={{display:'block',margin:'auto'}}>
 		          	<RegisterFormElement
 		          		type="text"
