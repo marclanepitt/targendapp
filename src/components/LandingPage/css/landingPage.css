@@ -1,0 +1,257 @@
+
+.quote-box {
+  border-radius: 3px;
+  position: relative;
+  margin: 8% auto auto auto;
+  width: 750px;
+  padding: 10px 50px;
+  display: table;
+  background-color: #fff;
+  color:#333;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+.quote-box .quote-text {
+  text-align: center;
+  width: 750px;
+  height: auto;
+  clear: both;
+  font-weight: 500;
+  font-size: .6em;
+}
+.quote-box .quote-text i {
+  font-size: 1em;
+  margin-right: 0.4em;
+}
+.quote-box .quote-author {
+  width: 450px;
+  height: auto;
+  clear: both;
+  padding-top: 20px;
+  font-size: .33em;
+  text-align: right;
+}
+.quote-box .buttons {
+  width: 450px;
+  margin: auto;
+  display: block;
+}
+.quote-box .buttons .button {
+  height: 38px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #333;
+  outline: none;
+  font-size: 0.85em;
+  padding: 8px 18px 6px 18px;
+  margin-top: 30px;
+  opacity: 1;
+  cursor: pointer;
+}
+.quote-box .buttons .button:hover {
+  opacity: 0.9;
+}
+.quote-box .buttons .button#tweet-quote, .quote-box .buttons .button#tumblr-quote {
+  float: left;
+  padding: 0px;
+  padding-top: 8px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 5px;
+  height: 30px;
+  width: 40px;
+}
+.quote-box .buttons .button#new-quote {
+  float: right;
+}
+
+
+.cta-button {
+  margin: auto;
+  display: block;
+  margin-top: 10%;
+  margin-left: 200px;
+  padding: 1em 5em;
+  box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  line-height: 1em;
+  font-family: Raleway, Open Sans, Arial;
+  font-weight: 300;
+  border-radius: 1.5em;
+  border: 1px solid;
+  transition: 0.2s all;
+  cursor: pointer;
+  font-size: 20px;
+  max-width: 400px;
+  text-align: center;
+}
+
+
+.cta-button:hover {
+  color: #2B73AD !important;
+  background: white;
+  border-color: transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /*transform: scale(1.01);*/
+}
+.cta-button.positive {
+  border-color: #6199b7;
+  color: #6199b7;
+}
+.cta-button.positive:hover {
+  border-color: #468fb6;
+  color: #fff;
+  background-color: #468fb6;
+}
+
+
+
+.landing-page .main-title-container {
+  padding:4rem 0;
+  background-color: #18bc9c;
+  color: white;
+  background: url("../../../img/bg-pattern.png"),#2B73AD !important;
+  background-position: center;
+  background-size: cover;
+}
+.landing-page .title-row {
+  align-items: center;
+}
+.landing-page .button-row {
+  justify-content: center;
+}
+.landing-page .title {
+  font-size: 4rem;
+  font-family: "Josefin Sans";
+}
+.landing-page .subtitle {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+.landing-page .title-description {
+  margin-top: 1rem;
+  font-size: 2rem;
+  text-align: center;
+}
+.landing-page .description {
+  margin-top: 0.5rem;
+  font-family: "Josefin Sans";
+  font-size: 1.25rem;
+  text-align: center;
+}
+.landing-page .slogan {
+  padding-top: 0;
+  font-size: 1.5rem;
+  font-family: "Josefin Sans";
+}
+.landing-page .section-header {
+  font-family: "Josefin Sans";
+  padding: 5rem 2rem;
+  font-size: 3rem;
+  align-items: center;
+}
+.landing-page .section-header.odd {
+  color: white;
+  background-color: #2B73AD;
+}
+.landing-page .section-header.odd .subtitle {
+  font-size: 3rem;
+}
+.landing-page .section-header.even {
+  color: #18323f;
+  background-color: white;
+}
+.landing-page .image-description {
+  border-radius: 3rem;
+}
+.landing-page .subfooter {
+  font-family: "Josefin Sans";
+  margin: 0;
+  background-color:#2B73AD;
+  color: white;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+}
+.landing-page .subfooter .grid-item-1 {
+  padding: 2px 0;
+}
+.landing-page .subfooter .heading {
+  margin: 1rem 0;
+  font-size: 2rem;
+}
+.landing-page .footer {
+  font-family: "Josefin Sans";
+  background-color: #1b141a;
+  color: white;
+  text-align: center;
+}
+
+nav {
+  z-index: 3;
+}
+
+#nav-bg {
+  z-index: 1;
+}
+nav {
+  position: fixed;
+  top: 0;
+  border:none!important;
+}
+
+#nav-bg {
+  background:#2B73AD;
+  position: fixed;
+  height: 65px;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+.nav-actual {
+  background:none;
+  position: fixed !important;
+  height: 65px;
+  width: 100%;
+  top: 0;
+
+}
+
+.brand-image {
+  max-width: 180px;
+}
+
+.navbar-right > li {
+  float:none;
+  color:white;
+  text-align: center;
+  display: inline-block !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+}
+.navbar-right > li:hover {
+cursor: pointer;
+font-weight: 900;
+color: gainsboro;
+
+}
+
+.nav-button {
+  border: white 1px solid !important;
+  width: 6em;
+  font-size: 20px !important;
+  color: white !important;
+  margin-bottom: .2em;
+}
+
+.nav-button:hover {
+  background-color: gainsboro;
+}

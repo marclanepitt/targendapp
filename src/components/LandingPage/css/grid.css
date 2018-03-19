@@ -1,0 +1,34 @@
+.grid-row-item:not(:last-child), .grid-row-item-col:not(:last-child), .grid-row-item-col-center:not(:last-child), .grid-row-item-row:not(:last-child), .grid-row-item-row-center:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.grid-row-item-col, .grid-row-item-col-center {
+  display: flex;
+  flex-direction: row;
+}
+.grid-row-item-row, .grid-row-item-row-center {
+  display: flex;
+  flex-direction: column;
+}
+.grid-row-item-col-no-spacing {
+  display: flex;
+  flex-direction: row;
+}
+.grid-row-item-row-no-spacing {
+  display: flex;
+  flex-direction: column;
+}
+.grid-row-item-row-center {
+  align-items: center;
+}
+.grid-row-item-col-center {
+  align-items: center;
+}
+.grid-item, .grid-item-1, .grid-item-2 {
+  padding: 12px;
+}
+.grid-item-1 {
+  flex: 1;
+}
+.grid-item-2 {
+  flex: 2;
+}
