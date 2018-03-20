@@ -30,11 +30,13 @@ class CourseMain extends Component {
 			sectFilter:null,
 			alerts: [],
 			filters:{},
+			showFilters:false,
 		}
 		this.handleLogout = this.handleLogout.bind(this);
 		this.generateCourses = this.generateCourses.bind(this);
 		this.setCourseLoading = this.setCourseLoading.bind(this);
 		this.pushToHome = this.pushToHome.bind(this);
+		this.showFilters = this.showFilters.bind(this);
 		document.getElementsByTagName('body')[0].style.overflowY = "scroll";
 
 	}
@@ -195,6 +197,12 @@ class CourseMain extends Component {
 		this.props.history.push("/");
 	}
 
+	showFilters() {
+		this.setState({
+			showFilters:!this.state.showFilters,
+		})
+	}
+
   render() {
   	let {loading,courseList,user,courseLoading,filters} = this.state;
     return (
@@ -230,7 +238,12 @@ class CourseMain extends Component {
 			dismissTitle="Begone!"
 			onDismiss={this.onAlertDismissed.bind(this)}
 		/>
-     <MediaQuery query="(min-device-width: 1224px)">
+		<MediaQuery query="(max-device-width: 1224px)">
+	     <br/>
+	     <br/>
+	     <br/>
+	     </MediaQuery>
+	   <MediaQuery query="(min-device-width: 1224px)">
 		<div className = "row search-bar">
 				<div className = "col col-lg-2">
 					<CourseFilter onChange={this.handleFilterChange} options ={filters['department']} attribute = "Department" />
@@ -245,15 +258,55 @@ class CourseMain extends Component {
 					<CourseFilter onChange={this.handleFilterChange} options ={filters['semester']} placeholder= 'S18' attribute = "Semester" />
 				</div>
 				<div className = "col col-lg-4"/>
+
 				<div className = "col col-lg-2" style={{marginTop:'8px'}}>
 					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link">Don't see your class?</a>
 				</div>
 		</div>
 		</MediaQuery>
-	     <MediaQuery query="(max-device-width: 1224px)">
-	     <br/>
-	     <br/>
-	     </MediaQuery>
+		<MediaQuery query="(max-device-width: 1224px)">
+		<div style={{width:"100%"}}>
+			<div style={{textAlign:"center",cursor:"pointer"}} onClick={this.showFilters}>
+			<i className="fa fa-sliders" style={{fontSize:"20px"}}/> <span style={{fontSize:"20px"}}>Filters</span> 
+			&nbsp;
+			{this.state.showFilters ? 
+			<i className="fa fa-caret-up" style={{fontSize:"20px"}}/>
+				:
+			<i className="fa fa-caret-down" style={{fontSize:"20px"}}/>
+
+			}
+			</div>
+		</div>
+			{this.state.showFilters ? 
+				<div>
+				<div className = "row" >
+					<div className="col col-lg-10">
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['department']} attribute = "Department" />
+					</div>
+				</div>
+				<br/>
+				<div className = "row">
+					<div className="col col-lg-10">
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['number']} attribute = "Num" />
+					</div>
+				</div>
+				<br/>
+				<div className = "row">
+				<div className="col col-lg-10">
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['section']} attribute = "Sect" />
+				</div>
+				</div>
+				<br/>
+				<div className = "row">
+					<div className="col col-lg-10">
+					<CourseFilter onChange={this.handleFilterChange} options ={filters['semester']} placeholder= 'S18' attribute = "Semester" />
+					</div>
+				</div>
+				</div>
+				:
+				<div/>
+			}
+		</MediaQuery>
 		<div className = "course-card-container">
 		{courseLoading ?
       			<CourseLoader loading={courseLoading}/>
