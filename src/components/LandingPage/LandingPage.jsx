@@ -38,6 +38,32 @@ export default class LandingPage extends React.Component {
 			},
 			]
 		};
+
+		this.handleScroll = this.handleScroll.bind(this);
+	}
+
+	componentDidMount() {
+       		window.addEventListener('scroll',this.handleScroll);
+     }
+
+	componentWillUnmount() {
+	    	window.removeEventListener('scroll', this.handleScroll);
+	}
+
+	handleScroll(e) {
+      var header = $('#nav-bg');
+      var range = 200;
+      var scrollTop = $(e.target).scrollTop();
+      console.log(scrollTop)
+      let height = header.outerHeight();
+      let offset = height / 1.1;
+      let calc = ((scrollTop - offset + range) / range)-1;
+	      header.css({ 'opacity': calc });
+	      if (calc > '.9') {
+	        header.css({ 'opacity': 1 });
+	      } else if ( calc < '0' ) {
+	        header.css({ 'opacity': 0 });
+	      }
 	}
 
 	animateAndScroll(e) {

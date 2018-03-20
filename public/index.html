@@ -41,23 +41,5 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-  <script>
-    var header = $('#nav-bg');
-    var range = 200;
 
-    $(window).on('scroll', function () {
-      
-      var scrollTop = $(this).scrollTop(),
-          height = header.outerHeight(),
-          offset = height / 1.1,
-          calc = ((scrollTop - offset + range) / range)-1;
-      header.css({ 'opacity': calc });
-      if (calc > '.9') {
-        header.css({ 'opacity': 1 });
-      } else if ( calc < '0' ) {
-        header.css({ 'opacity': 0 });
-      }
-      
-    });
-  </script>
 </html>
