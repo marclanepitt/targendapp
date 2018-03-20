@@ -1,5 +1,6 @@
 //React
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
 
 //External Css
 import './css/CourseCard.css';
@@ -58,11 +59,11 @@ class CourseCard extends Component {
                     <div className="card" style={{height:"250px"}}>
                     {this.props.chosen ? 
                       <div className="image-container">
-                          <img className="card-img-top" src={course.image.image} alt="100%x180" style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
+                          <img className="card-img-top" src={course.image.image} alt={course.image.name} style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
                           <div className="after">Selected</div>
                       </div>
                       :
-                          <img className="card-img-top" src={course.image.image} alt="100%x180" style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
+                          <img className="card-img-top" src={course.image.image} alt={course.image.name} style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
                         }
                       <div className="card-block">
                         <h4 className="card-title">{course.department} {course.number}-{course.section}</h4>
@@ -74,30 +75,51 @@ class CourseCard extends Component {
                     <div className="card" style={{height:"250px"}}>
                       <div className="card-block">
                         <div className="row" style={{marginTop:'14px'}}>
-                            <div className = "col col-lg-4 text-center">
+                            <div className = "col col-lg-1 text-center">
                                 <FontAwesome style={{fontSize:'28px'}} name='file-text-o'/>
                             </div>
+                        <MediaQuery query="(min-device-width: 1224px)">
                             <div className = "col col-lg-6 text-center">
                                 {course.assignment_total} <b>Assignments</b>
                             </div>
+                        </MediaQuery>
+                        <MediaQuery query="(max-device-width: 1224px)">
+                            <div className = "col col-lg-6 " style={{float:"left", marginLeft:"-40px"}}>
+                                {course.assignment_total} <b>Assignments</b>
+                            </div>
+                        </MediaQuery>
                         </div>
                         <hr/>
                         <div className="row">
                             <div className = "col col-lg-4 text-center">
                                 <FontAwesome style={{fontSize:'28px'}} name='bullhorn'/>
                             </div>
+                        <MediaQuery query="(min-device-width: 1224px)">
                             <div className = "col col-lg-6 text-center">
                                 {course.lecture_total} <b>Lectures</b>
                             </div>
+                        </MediaQuery>
+                        <MediaQuery query="(max-device-width: 1224px)">
+                            <div className = "col col-lg-6 " style={{float:"left", marginLeft:"-40px"}}>
+                                {course.lecture_total} <b>Lectures</b>
+                            </div>
+                        </MediaQuery>
                         </div>
                         <hr/>
                         <div className="row">
                             <div className = "col col-lg-4 text-center">
                                 <FontAwesome style={{fontSize:'28px'}} name='edit'/>
                             </div>
+                        <MediaQuery query="(min-device-width: 1224px)">
                             <div className = "col col-lg-6 text-center">
                                 {course.test_total} <b>Tests</b>
                             </div>
+                        </MediaQuery>
+                        <MediaQuery query="(max-device-width: 1224px)">
+                            <div className = "col col-lg-6 " style={{float:"left", marginLeft:"-40px"}}>
+                                {course.test_total} <b>Tests</b>
+                            </div>
+                        </MediaQuery>
                         </div>
                         <hr/>
                         <h4 className="card-title" style={{marginTop:'14px'}}>

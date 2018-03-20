@@ -129,6 +129,21 @@ class UserMain extends Component {
 			loading:true
 		});
 
+		if(this.state.user.userprofile.courses.length === 0) {
+			const newAlert ={
+				id: (new Date()).getTime(),
+				type: "warning",
+				headline: "Oops",
+				message: "Please add a course to submit a request"
+			};
+
+			this.setState({
+				loading:false,
+				alerts: [...this.state.alerts, newAlert]
+
+			});			
+		} else {
+
 		const onSuccess = response => {
 			const newAlert ={
 				id: (new Date()).getTime(),
@@ -161,6 +176,7 @@ class UserMain extends Component {
 		}
 
 		Api.calendarRequest(onSuccess,onError);
+		}
 	}	
 
 	onAlertDismissed(alert) {
