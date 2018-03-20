@@ -7,6 +7,7 @@ import Loader from "../Common/Loader.js";
 import logo from '../../img/classcalicon.jpg';
 import screenshot from '../../img/app-screenshot.png';
 import "html5-device-mockups/dist/device-mockups.min.css";
+import MediaQuery from 'react-responsive';
 
 
 const Api = ApiInstance.instance;
@@ -97,8 +98,8 @@ class Register extends Component {
       <div>
       <Loader loading={loading}/>
 		<div className="container">
-		  
 		  <div className="row" id="pwd-container">
+		  		<MediaQuery query="(min-device-width: 1224px)">
 		    <div className="col-lg-7" style={{padding:'67px'}}>
 		    	<div className="row">
 		    	<div className="register-saying">
@@ -117,6 +118,7 @@ class Register extends Component {
 					</div>
 				</div>
 		    </div>
+		    </MediaQuery>
 		    
 		    <div className="col-md-4">
 		      <section className="login-form">
