@@ -8,6 +8,8 @@ import CourseFilter from './CourseFilter.js';
 import { Link } from 'react-router-dom';
 import logo from '../../img/classcalicon.jpg';
 import {AlertList } from "react-bs-notifier";
+import MediaQuery from 'react-responsive';
+import MobileNav from "../Common/MobileNav";
 
 const Api = ApiInstance.instance;
 let departmentFilter = null;
@@ -201,6 +203,7 @@ class CourseMain extends Component {
       	<Loader loading={loading}/>
       :
       	<div>
+     <MediaQuery query="(min-device-width: 1224px)">
   		<nav className="navbar navbar-default">
 		  <div className="container-fluid">
 		    <div className="navbar-header">
@@ -218,7 +221,8 @@ class CourseMain extends Component {
           	</ul>
 		  </div>
 		</nav>
-
+	    </MediaQuery>
+	    <MobileNav user = {user} type={"course"}/>
 		<AlertList
 			position="top-right"
 			alerts={this.state.alerts}
@@ -226,7 +230,7 @@ class CourseMain extends Component {
 			dismissTitle="Begone!"
 			onDismiss={this.onAlertDismissed.bind(this)}
 		/>
-
+     <MediaQuery query="(min-device-width: 1224px)">
 		<div className = "row search-bar">
 				<div className = "col col-lg-2">
 					<CourseFilter onChange={this.handleFilterChange} options ={filters['department']} attribute = "Department" />
@@ -245,7 +249,11 @@ class CourseMain extends Component {
 					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link">Don't see your class?</a>
 				</div>
 		</div>
-
+		</MediaQuery>
+	     <MediaQuery query="(max-device-width: 1224px)">
+	     <br/>
+	     <br/>
+	     </MediaQuery>
 		<div className = "course-card-container">
 		{courseLoading ?
       			<CourseLoader loading={courseLoading}/>

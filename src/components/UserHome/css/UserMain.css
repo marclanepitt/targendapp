@@ -15,3 +15,13 @@
 	font-size: 14px;
 	font-weight: 900;
 }
+
+.mobile-request-btn {
+	margin:auto !important;
+	display: block !important;
+	margin-bottom: -16px !important;
+	margin-top: 3px !important;
+	font-weight: 900 !important;
+	background-color: #2B73AD;
+	color: white;
+}

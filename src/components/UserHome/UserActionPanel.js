@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/UserActionPanel.css';
 import FontAwesome from 'react-fontawesome';
+import MediaQuery from 'react-responsive';
 
 
 class UserActionPanel extends Component {
@@ -43,7 +44,7 @@ class UserActionPanel extends Component {
       :
       <div/>
       }
-
+    <MediaQuery query="(min-device-width: 1224px)">
       	<div className = "panel">
             <div className="card panel-card" style={{height:"250px",cursor:cursor}}>
               <div className="card-block" style={{textAlign:"center"}}>
@@ -72,7 +73,7 @@ class UserActionPanel extends Component {
               </div>
             </div>
       	</div>
-	  	
+	  	</MediaQuery>
        </div>
     );
   }

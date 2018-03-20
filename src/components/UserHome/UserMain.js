@@ -7,6 +7,8 @@ import Loader from "../Common/Loader.js";
 import "./css/UserMain.css";
 import logo from '../../img/classcalicon.jpg';
 import {AlertList } from "react-bs-notifier";
+import MediaQuery from 'react-responsive';
+import MobileNav from "../Common/MobileNav";
 
 
 const Api = ApiInstance.instance;
@@ -188,6 +190,7 @@ class UserMain extends Component {
       	<Loader loading={loading}/>
       :
   		<div>
+  	<MediaQuery query="(min-device-width: 1224px)">
 	  	<nav className="navbar navbar-default">
 		  <div className="container-fluid">
 		    <div className="navbar-header">
@@ -203,14 +206,61 @@ class UserMain extends Component {
           	</ul>
 		  </div>
 		</nav>
-
+		</MediaQuery>
+		<MobileNav user={user} type={"user"}/>
 		<AlertList
 			position="top-right"
 			alerts={this.state.alerts}
 			timeout={5000}
 			onDismiss={this.onAlertDismissed.bind(this)}
 		/>
+  	<MediaQuery query="(max-device-width: 1224px)">	
+  	<br/>
+  	<br/>
+  	<br/>
+	</MediaQuery>
+	 <MediaQuery query="(max-device-width: 1224px)">
+	 	<div>
+	 	{user.userprofile.cal_request === null ?
+	 	<div>
+		 <button onClick={this.handleCalRequest} className="btn btn-default btn-lg mobile-request-btn">Request Calendar</button>
+		 </div>
+		 :
+		 <div>
+		 <button onClick={this.handleCancelRequest} className="btn btn-default btn-lg mobile-request-btn">Cancel Request</button>
+		 </div>
+		 }	 
+		</div>
+		<div className = "col col-lg-6">
+		<div className = "course-cart-box container">
+			<div className="row course-cart-row">
+			{user.userprofile.courses.length === 0 ?
+				<div className="no-course-message" style={{display:"block",margin:"auto"}}>
+					Add courses at the course select page
+				</div>
+				:
 
+			courseList.map((course) =>
+				user.userprofile.courses.indexOf(course.id) !== -1 ?
+		    	<div className="mobile-course-preview row" style={{width:"120%"}}>
+		    		<div className="col col-lg-12">
+                    <div className="card" style={{height:"150px",width:"200px",margin:"0 auto",display:"block",marginTop:"1em"}}>
+                     <img className="card-img-top" src={course.image.image} alt="100%x180" style={{height: '100px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
+                      <div className="card-block">
+                        <h4 className="card-title-preview">{course.department} {course.number}-{course.section}</h4>
+                        <p className="card-text-preview">{course.description}</p>
+                      </div>
+                    </div>
+                    </div>
+		    	</div>
+		    	:
+		    	<div/>
+			 )}
+			</div>
+			</div>
+		</div>
+	 </MediaQuery>
+	 	 <MediaQuery query="(min-device-width: 1224px)">
 		<div className = "container">
 			<div className="row overflow-hide">
 				<div className = "col col-lg-6">
@@ -239,14 +289,17 @@ class UserMain extends Component {
 							<UserActionPanel calRequest = {user.userprofile.cal_request} clickAction = {this.handleCalRequest} handleCancelRequest = {this.handleCancelRequest} panelType ={"calendar"}/>
 						</div>
 					</div>
+					<MediaQuery query="(min-device-width: 1224px)">
 					<div className = "row" style={{marginTop:'-130px'}}>
 						<div className = "col col-lg-12">
 							<UserActionPanel panelType = {"notifications"}/>
 						</div>
 					</div>
+					</MediaQuery>
 				</div>
 			</div>
 		</div>
+		</MediaQuery>
 		</div>
 		}
        </div>
