@@ -21,12 +21,10 @@ import "./css/index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 
-if(!window.location.hostname === "localhost") {
 	if (window.location.protocol !== 'https:')
 	{
 	 window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
 	}
-}
 
 ReactDOM.render((
   <BrowserRouter>
