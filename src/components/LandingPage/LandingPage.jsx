@@ -8,6 +8,8 @@ import SimpleLineIcon from 'react-simple-line-icons';
 import logo_tp from "../../img/class-cal-tp.png";
 import ReactGA from 'react-ga';
 import SimpleTextSlotMachine from './SimpleTextSlotMachine';
+import MediaQuery from 'react-responsive';
+import MobileNav from "./MobileNav";
 ReactGA.initialize('UA-115975493-1');
 ReactGA.pageview("Landing Page");
 
@@ -141,49 +143,94 @@ export default class LandingPage extends React.Component {
 		return (
 			<div>
 			<div id='nav-bg'></div>
+			<MediaQuery query="(min-device-width: 1224px)">
+				<nav className="navbar navbar-default nav-actual">
+				  <div className="container-fluid">
 
-			<nav className="navbar navbar-default nav-actual">
-			  <div className="container-fluid">
-			    <div className="navbar-header">
-			      <a id="#top" onClick={this.animateAndScroll} >
-			        <img style={{cursor:"pointer"}}  id="#top"  alt="Brand" className="brand-image" src={logo_tp}/>
-			      </a>
-			    </div>
-			    <ul className="nav navbar-nav navbar-right" style={{display:"inline-block"}}>
-			        <li><a id="#features" onClick={this.animateAndScroll}> Features</a></li>
-			        <li><a id="#social-proof" onClick={this.animateAndScroll}> About</a></li>
-			        <li><a id="#contact-us" onClick={this.animateAndScroll}> Contact Us</a></li>
-			        <li><a className="btn btn-sm nav-button" onClick={this.pushToLogin.bind(this)}>Login</a></li>
-			     </ul>
-			  </div>
-			</nav>
+				    <div className="navbar-header">
+				      <a id="#top" onClick={this.animateAndScroll} >
+				        <img style={{cursor:"pointer"}}  id="#top"  alt="Brand" className="brand-image" src={logo_tp}/>
+				      </a>
+				    </div>
+				    <ul className="nav navbar-nav navbar-right " style={{display:"inline-block"}}>
+				        <li><a id="#features" onClick={this.animateAndScroll}> Features</a></li>
+				        <li><a id="#social-proof" onClick={this.animateAndScroll}> About</a></li>
+				        <li><a id="#contact-us" onClick={this.animateAndScroll}> Contact Us</a></li>
+				        <li><a className="btn btn-sm nav-button" onClick={this.pushToLogin.bind(this)}>Login</a></li>
+				     </ul>
+				  </div>
+				</nav>
+			</MediaQuery>
+			<MobileNav loginPush={this.pushToLogin.bind(this)} registerPush={this.pushToRegister.bind(this)}/>
 			<div id="header" className="landing-page grid">
-			<div className="js-odoo"></div>
-				<div className="main-title-container">
-					<div className="grid-row-item-row title-row">
-						<div className="grid-item title">We. Organize.<SimpleTextSlotMachine textList={["Easily","Efficiently","College","You","Tarheels","Courses","Tests",]}/></div>
-						<div className="grid-item slogan">Get to studying, we'll calendarize your assignments in an instant.</div>
-					</div>
-					<div className="row">
-						<div className="col col-sm-6 button-wrap">
-    						<a className='cta-button' onClick={this.pushToRegister.bind(this)}>Get Started</a>
+				<MediaQuery query="(min-device-width: 1224px)">
+					<div className="main-title-container">
+						<div className="grid-row-item-row title-row">
+							<div className="grid-item title">We. Organize.<SimpleTextSlotMachine textList={["Easily","Efficiently","College","You","Tarheels","Courses","Tests",]}/></div>
+							<div className="grid-item slogan">Get to studying, we'll calendarize your assignments in an instant.</div>
 						</div>
-						<div className="col col-sm-6">
-				          <div className="device-wrapper" style={{marginRight:'200px'}} id="landing-device">
-							  <div className="device" data-device="iMac" data-orientation="portrait" data-color="black">
-							    <div className="screen" style={{backgroundImage:"url("+screenshot+")"}}>
-							    </div>
-							  </div>
+						<div className="row">
+							<div className="col col-sm-6 button-wrap">
+	    						<a className='cta-button' onClick={this.pushToRegister.bind(this)}>Get Started</a>
+							</div>
+							<div className="col col-sm-6">
+					          <div className="device-wrapper" style={{marginRight:'200px'}} id="landing-device">
+								  <div className="device" data-device="iMac" data-orientation="portrait" data-color="black">
+								    <div className="screen" style={{backgroundImage:"url("+screenshot+")"}}>
+								    </div>
+								  </div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</MediaQuery>
+				<MediaQuery query="(max-device-width: 1224px)">
+					<div className="main-title-container">
+					<br/>
+						<div className="grid-row-item-row title-row">
+							<div className="grid-item title" style={{fontSize:'34px'}}>We. Organize.<SimpleTextSlotMachine textList={["Easily","Efficiently","College","You","Tarheels","Courses","Tests",]}/></div>
+						</div>
+					<div className="col col-sm-6">
+					          <div className="device-wrapper" style={{marginRight:'200px'}} id="landing-device">
+								  <div className="device" data-device="iMac" data-orientation="portrait" data-color="black">
+								    <div className="screen" style={{backgroundImage:"url("+screenshot+")"}}>
+								    </div>
+								  </div>
+								</div>
+							</div>
+							<div style={{marginLeft:"-50%"}}>
+							 <a className='cta-button' onClick={this.pushToRegister.bind(this)}>Get Started</a>
+							 </div>
+						</div>
+				</MediaQuery>
 				{this.renderHelpSections()}
 				<div id="social-proof" className="grid-row-item-row section-header odd">
+					<MediaQuery query="(max-device-width: 1224px)">
+					<div className="grid-item subtitle" style={{fontSize:"24px"}}>
+					We all want to spend a little less time organizing...
+					</div>
+					</MediaQuery>
+					<MediaQuery query="(min-device-width: 1224px)">
 					<div className="grid-item subtitle" style={{fontSize:"30px"}}>
 					We all want to spend a little less time organizing...
 					</div>
+					</MediaQuery>
 					<div className="row">
+				<MediaQuery query="(max-device-width: 1224px)">
+					<div className="quote-box" style={{width:"220px", marginLeft:".05em"}}>
+						  <div className="quote-text" style={{width:"220px"}}>
+						    <i className="fa fa-quote-left"> </i><span id="text">It's too time consuming to organize with online planners. It's time for syllabi to be automated.</span>
+						  </div>
+
+						  <div className="quote-author" style={{width:"190px"}}>
+
+						    <span id="author"><b>Marc Pittinsky</b></span> via
+						      &nbsp;<i className="fa fa-twitter"></i>
+
+						  </div>
+						</div>
+				</MediaQuery>
+				<MediaQuery query="(min-device-width: 1224px)">
 					<div className="quote-box">
 						  <div className="quote-text">
 						    <i className="fa fa-quote-left"> </i><span id="text">It's too time consuming to organize with online planners. It's time for syllabi to be automated.</span>
@@ -196,13 +243,15 @@ export default class LandingPage extends React.Component {
 
 						  </div>
 						</div>
+				</MediaQuery>
 					</div>
 				</div>
+
 				<div id="contact-us" className="grid-row-item-row section-header even">
 					<div className="grid-item subtitle" style={{fontSize:"60px"}}>
 					Contact Us
 					</div>
-					<div className="row" style={{fontSize:"20px"}}>
+					<div className="row" style={{fontSize:"20px",textAlign:"center"}}>
 						Have any questions?  Any suggestions? Just want to say hello?
 					</div>
 					<div className="row" style={{margin:'20px'}}>
