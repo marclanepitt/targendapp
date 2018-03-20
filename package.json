@@ -12,6 +12,7 @@
     "materialize-css": "^0.100.2",
     "query-string": "^5.1.0",
     "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-select": "^0.14.0",
     "react-bs-notifier": "^4.4.6",

@@ -126,6 +126,7 @@
 .landing-page .title {
   font-size: 4rem;
   font-family: "Josefin Sans";
+  margin-left: -2.4em;
 }
 .landing-page .subtitle {
   margin-bottom: 1.5rem;

@@ -7,6 +7,7 @@ import "html5-device-mockups/dist/device-mockups.min.css";
 import SimpleLineIcon from 'react-simple-line-icons';
 import logo_tp from "../../img/class-cal-tp.png";
 import ReactGA from 'react-ga';
+import SimpleTextSlotMachine from './SimpleTextSlotMachine';
 ReactGA.initialize('UA-115975493-1');
 ReactGA.pageview("Landing Page");
 
@@ -161,7 +162,7 @@ export default class LandingPage extends React.Component {
 			<div className="js-odoo"></div>
 				<div className="main-title-container">
 					<div className="grid-row-item-row title-row">
-						<div className="grid-item title">We. Organize. You.</div>
+						<div className="grid-item title">We. Organize.<SimpleTextSlotMachine textList={["Easily","Efficiently","College","You","Tarheels","Courses","Tests",]}/></div>
 						<div className="grid-item slogan">Get to studying, we'll calendarize your assignments in an instant.</div>
 					</div>
 					<div className="row">
