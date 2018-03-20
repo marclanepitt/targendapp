@@ -26,7 +26,7 @@ class SimpleTextSlotMachine extends Component {
 		}
 	}
 	componentDidMount() {
-		this.interval = setInterval(this.tickAndPick, 250);
+		setTimeout(function() { this.setInterval()}.bind(this), 4000);
 	}
 
 	componentWillUnmount() {
