@@ -55,7 +55,6 @@ export default class LandingPage extends React.Component {
       var header = $('#nav-bg');
       var range = 200;
       var scrollTop = $(e.target).scrollTop();
-      console.log(scrollTop)
       let height = header.outerHeight();
       let offset = height / 1.1;
       let calc = ((scrollTop - offset + range) / range)-1;
