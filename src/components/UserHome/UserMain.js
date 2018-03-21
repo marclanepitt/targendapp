@@ -5,7 +5,7 @@ import UserActionPanel from "./UserActionPanel.js";
 import CourseCardPreview from "./CourseCardPreview";
 import Loader from "../Common/Loader.js";
 import "./css/UserMain.css";
-import logo from '../../img/classcalicon.jpg';
+import logo from "../../img/class-cal-tp.png";
 import {AlertList } from "react-bs-notifier";
 import MediaQuery from 'react-responsive';
 import MobileNav from "../Common/MobileNav";

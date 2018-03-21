@@ -38,8 +38,7 @@ class MobileNav extends Component {
 	      		<Link to="/home"> Checkout</Link>
 	      	}
 	      	</li>
-			<li><a> Filter Courses</a></li>
-	        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link" style={{borderBottom:"solid #2B73AD"}}> Don't see your class?</a></li>
+	        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link"> Don't see your class?</a></li>
 	        </ul>
 	        )
 		}

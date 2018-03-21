@@ -6,7 +6,7 @@ import CourseCard from './CourseCard.js';
 import CourseLoader from './CourseLoader.js';
 import CourseFilter from './CourseFilter.js';
 import { Link } from 'react-router-dom';
-import logo from '../../img/classcalicon.jpg';
+import logo from "../../img/class-cal-tp.png";
 import {AlertList } from "react-bs-notifier";
 import MediaQuery from 'react-responsive';
 import MobileNav from "../Common/MobileNav";

@@ -2,9 +2,11 @@
   perspective: 1000px;
   margin-bottom: 15px;
 }
-.card-flip:hover .flip, .card-flip.hover .flip {
+.card-flip:hover .flip, .card-flip.hover .flip .card-flip:focus{
   transform: rotateY(180deg);
+
 }
+
 .card-flip, .front, .back {
   width: 100%;
   height: 250px;

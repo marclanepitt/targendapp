@@ -7,6 +7,7 @@ import './css/CourseCard.css';
 
 //External Components
 import FontAwesome from 'react-fontawesome';
+import $ from "jquery";
 
 import ApiInstance from '../../js/utils/Api.js';
 const Api = ApiInstance.instance;
@@ -16,6 +17,7 @@ class CourseCard extends Component {
         super(props);
         this.handleCourseAdd = this.handleCourseAdd.bind(this);
         this.handleCourseRemove = this.handleCourseRemove.bind(this);
+        this.hoverHack = this.hoverHack.bind(this);
     }
 
     handleCourseAdd() {
@@ -43,6 +45,9 @@ class CourseCard extends Component {
 
         Api.removeCourse(this.props.course.id,onSuccess,onError);
     }
+    hoverHack() {
+        $("#card-flip"+this.props.course.id).focus()
+    }
 
   render() {
     let course;
@@ -53,12 +58,12 @@ class CourseCard extends Component {
     }
     return (
     <div className="col-sm-3" style={{maxWidth: '350px'}}>
-        <div className="card-flip">
+        <div id={"card-flip"+course.id}className="card-flip">
             <div className="flip">
                 <div className="front">
                     <div className="card" style={{height:"250px"}}>
                     {this.props.chosen ? 
-                      <div className="image-container">
+                      <div className="image-container" onClick={this.hoverHack}>
                           <img className="card-img-top" src={course.image.image} alt={course.image.name} style={{height: '180px', width: '100%', display: 'block'}} data-holder-rendered="true"/>
                           <div className="after">Selected</div>
                       </div>
@@ -75,7 +80,7 @@ class CourseCard extends Component {
                     <div className="card" style={{height:"250px"}}>
                       <div className="card-block">
                         <div className="row" style={{marginTop:'14px'}}>
-                            <div className = "col col-lg-1 text-center">
+                            <div className = "col col-lg-4 text-center">
                                 <FontAwesome style={{fontSize:'28px'}} name='file-text-o'/>
                             </div>
                         <MediaQuery query="(min-device-width: 1224px)">
