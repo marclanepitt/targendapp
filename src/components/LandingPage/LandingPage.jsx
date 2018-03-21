@@ -10,8 +10,13 @@ import ReactGA from 'react-ga';
 import SimpleTextSlotMachine from './SimpleTextSlotMachine';
 import MediaQuery from 'react-responsive';
 import MobileNav from "./MobileNav";
+
 ReactGA.initialize('UA-115975493-1');
 ReactGA.pageview("Landing Page");
+ReactGA.event({
+	category:"START",
+	action:"Landed on Landing Page",
+});
 
 export default class LandingPage extends React.Component {
 	constructor() {
@@ -39,10 +44,14 @@ export default class LandingPage extends React.Component {
 					}
 				]
 			},
-			]
+			],
+			termsShow:true,
+
 		};
 
 		this.handleScroll = this.handleScroll.bind(this);
+		this.termsClose = this.termsClose.bind(this);
+		this.termsOpen = this.termsOpen.bind(this);
 	}
 
 	componentDidMount() {
@@ -138,6 +147,19 @@ export default class LandingPage extends React.Component {
 			action:"Went to Register Page",
 		});
 	}
+
+	termsClose() {
+		this.setState({
+			termsShow:false
+		})
+	}
+
+	termsOpen() {
+		this.setState({
+			termsShow:true
+		})
+	}
+
 
 	render() {
 		return (
@@ -262,11 +284,12 @@ export default class LandingPage extends React.Component {
 					</div>
 				</div>
 				<div className="grid-row-item-col subfooter">
-					<div className="grid-item"><a>Terms and Privacy</a></div>
+					<div className="grid-item"><a onClick={this.termsOpen}>Terms</a> and <a>Privacy</a></div>
 				</div>
 				<div className="grid-row-item-row footer">
 					<div className="grid-item">All Rights Reserved ClassCal {new Date().getFullYear()}</div>
 				</div>
+
 			</div>
 			</div>
 		)

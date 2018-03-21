@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 import Loader from '../Common/Loader.js';
 import logo from '../../img/classcalicon.jpg';
 import {Alert} from 'react-bootstrap';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-115975493-1');
+ReactGA.pageview("Login");
+ReactGA.event({
+	category:"Login",
+	action:"User landed on login page",
+});
 
 const Api = ApiInstance.instance;
 
@@ -42,6 +50,10 @@ class Login extends Component {
 
 		const onSuccess = response => {
 			this.props.history.push('/courses');
+			ReactGA.event({
+				category:"Login",
+				action:this.state.email + " logged in",
+			});
 		}
 		const onError = err => {
 			this.setState({

@@ -8,7 +8,14 @@ import logo from '../../img/classcalicon.jpg';
 import screenshot from '../../img/app-screenshot.png';
 import "html5-device-mockups/dist/device-mockups.min.css";
 import MediaQuery from 'react-responsive';
+import ReactGA from 'react-ga';
 
+ReactGA.initialize('UA-115975493-1');
+ReactGA.pageview("Register");
+ReactGA.event({
+	category:"Register",
+	action:"User landed on registration page",
+});
 
 const Api = ApiInstance.instance;
 
@@ -52,6 +59,10 @@ class Register extends Component {
 			this.setState({
 				loading:false,
 			})
+			ReactGA.event({
+				category:"Register",
+				action:"User successfully registered with email" + this.state.email,
+			});
 			this.props.history.push('/courses');
 		}
 		const onError = err => {
@@ -59,6 +70,10 @@ class Register extends Component {
 				errors:err.response.data,
 				loading:false,
 			})
+			ReactGA.event({
+				category:"Register",
+				action:"User tried to register but get errors" + JSON.stringify(this.state.errors),
+			});
 
 		}
 
