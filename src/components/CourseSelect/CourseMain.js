@@ -230,7 +230,7 @@ class CourseMain extends Component {
 		  </div>
 		</nav>
 	    </MediaQuery>
-	    <MobileNav user = {user} type={"course"}/>
+	    <MobileNav user = {user} type={"course"} history={this.props.history}/>
 		<AlertList
 			position="top-right"
 			alerts={this.state.alerts}

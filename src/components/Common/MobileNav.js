@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import ApiInstance from '../../js/utils/Api.js';
 import MediaQuery from 'react-responsive';
 import logo_tp from "../../img/class-cal-tp.png";
 import ReactGA from 'react-ga';
+import Loader from '../Common/Loader.js';
 import { Link } from 'react-router-dom';
 import "./css/MobileNav.css";
 
 ReactGA.initialize('UA-115975493-1');
 ReactGA.pageview("Landing Page");
+const Api = ApiInstance.instance;
+
 
 class MobileNav extends Component {
 
@@ -14,17 +18,39 @@ class MobileNav extends Component {
 		super(props);
 		this.state = {
 			showDropdown:false,
-			dropdownIcon:"fa fa-bars"
+			dropdownIcon:"fa fa-bars",
+			loading:false,
 		}
 
 		this.getMenuItems = this.getMenuItems.bind(this);
+		this.handleLogout = this.handleLogout.bind(this);
+	}
+
+	handleLogout(e) {
+		e.preventDefault();
+		this.setState({
+			loading:true,
+			showDropdown:false
+		});
+		const onSuccess = response => {
+			this.props.history.push('/login');
+		}
+
+		const onError = err => {
+			this.props.history.push('/login');
+
+		}
+
+		Api.logoutUser(onSuccess,onError);
 	}
 
 	getMenuItems() {
 		if(this.props.type === "user") {
 			return (
-			<ul id ="mobile-menu-main" style={{marginTop:"3.3em"}}>
+			<ul id ="mobile-menu-main" style={{marginTop:"5.4em"}}>
 			<li><Link to="/courses"> Select Courses</Link></li>
+			<hr/>
+			<li style={{paddingBottom:"1em"}}><button onClick={this.handleLogout} className="btn btn-danger">Logout</button></li>
 			</ul>
 	        )
 		} else {
@@ -39,6 +65,8 @@ class MobileNav extends Component {
 	      	}
 	      	</li>
 	        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link"> Don't see your class?</a></li>
+	        <hr/>
+	        <li style={{paddingBottom:"1em"}}><button onClick={this.handleLogout} className="btn btn-danger">Logout</button></li>
 	        </ul>
 	        )
 		}
@@ -59,6 +87,11 @@ class MobileNav extends Component {
   render() {
     return (
 	    <MediaQuery query="(max-device-width: 1224px)">
+			 {this.state.loading ?
+		      	<Loader loading={this.state.loading}/>
+		      :
+		      	<div/>
+		      }
 			<nav className="navbar navbar-default nav-actual" style={{backgroundColor:"#2B73AD"}}>
 			  <div className="container-fluid">
 
