@@ -142,7 +142,7 @@ class Register extends Component {
 		          <div className="col-md-12" style={{display:'block',margin:'auto'}}>
 		          	<RegisterFormElement
 		          		type="text"
-		          		placeholder="UNC Email"
+		          		placeholder="Gmail"
 		          		handleInputChange = {this.handleInputChange}
 		          		name = "email"
 		          		error = {errors['email']}
