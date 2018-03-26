@@ -260,7 +260,7 @@ class CourseMain extends Component {
 				<div className = "col col-lg-4"/>
 
 				<div className = "col col-lg-2" style={{marginTop:'8px'}}>
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf_8Lzpl5omdBf4hMZo_ztQPHvxjDXUpPHlcFowsUeQxQ9MDA/viewform?usp=sf_link">Don't see your class?</a>
+					<a href="https://docs.google.com/forms/d/e/1FAIpQLSeU_46a-F1EhVskyTyUzev6GBQQn9Sma3Oyx5VeSMIVr0bevQ/viewform?usp=sf_link">Don't see your class?</a>
 				</div>
 		</div>
 		</MediaQuery>
