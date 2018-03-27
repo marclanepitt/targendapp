@@ -280,7 +280,7 @@ export default class LandingPage extends React.Component {
 						<i className="fa fa-envelope"></i>
 					</div>
 					<div className="row" style={{fontSize:"20px"}}>
-						Email us at support@classcal.com
+						Email us at goclasscal@gmail.com
 					</div>
 				</div>
 				<div className="grid-row-item-col subfooter">
