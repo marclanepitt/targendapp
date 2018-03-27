@@ -101,7 +101,7 @@ class Login extends Component {
 
 		          }
 
-		          <input onChange = {e=>this.handleInputChange(e,"email")} type="email" name="email" placeholder="UNC Email"  className="form-control input-lg" />
+		          <input onChange = {e=>this.handleInputChange(e,"email")} type="email" name="email" placeholder="Gmail"  className="form-control input-lg" />
 		          
 		          <input type="password" onChange={e=>this.handleInputChange(e,"password")} className="form-control input-lg" id="password" placeholder="Password" />
 		          
