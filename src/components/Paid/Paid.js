@@ -3,8 +3,11 @@ import "./css/paid.css";
 import Introduction from "./Introduction";
 import CalInstructions from "./CalInstructions";
 import SubmitInstructions from "./SubmitInstructions";
+import Finished from "./Finished";
 import $ from "jquery";
 import ReactGA from 'react-ga';
+import MediaQuery from 'react-responsive';
+
 
 ReactGA.initialize('UA-115975493-1');
 ReactGA.pageview("Get Paid");
@@ -44,11 +47,11 @@ class Paid extends Component {
 		let {step} = this.state;
 		if(step === 1) {
 			$("#step2,#step3,#step4").removeClass("selected");
-			return <Introduction/>;
 			ReactGA.event({
 				category:"PAID",
 				action:"went to payment options",
 			});
+			return <Introduction/>;
 		} else if(step === 2) {
 			ReactGA.event({
 				category:"PAID",
@@ -71,6 +74,7 @@ class Paid extends Component {
 				action:"went to finished note",
 			});
 			$("#step"+step).addClass("selected");
+			return <Finished _history = {this.props.history}/>;
 		}
 	}
 
@@ -103,17 +107,27 @@ class Paid extends Component {
   	let {step} = this.state;
     return (
       <div className="container">
-  	     <div className="paid-stepper col-sm-6">
-        	<div id="step1" className="step selected" step-des="Introduction">1</div>
-        	<div id="step2" className="step" step-des="Calendar Instructions">2</div>
-        	<div id="step3" className="step" step-des="Submission Instructions">3</div>
-        	<div id="step4" className="step end" step-des="Done!">4</div>
+		<MediaQuery query="(min-device-width: 1224px)">
+	  	     <div className="paid-stepper col-sm-6">
+	        	<div id="step1" className="step selected" step-des="Introduction">1</div>
+	        	<div id="step2" className="step" step-des="Calendar Instructions">2</div>
+	        	<div id="step3" className="step" step-des="Submission Instructions">3</div>
+	        	<div id="step4" className="step end" step-des="Done!">4</div>
 
-        </div>
-	      <div className="row">
-	        <div className="paid-title">
-	        	{this.getStepTitle()}
 	        </div>
+        </MediaQuery>
+	      <div className="row">
+			<MediaQuery query="(min-device-width: 1224px)">
+		        <div className="paid-title">
+		        	{this.getStepTitle()}
+		        </div>
+			</MediaQuery>
+			<MediaQuery query="(max-device-width: 1224px)">
+		        <div className="paid-title-small">
+
+		        	{this.getStepTitle()}
+		        </div>
+			</MediaQuery>
 	      </div>
 	      <div className="row">
 	        <div className="paid-subtitle">
