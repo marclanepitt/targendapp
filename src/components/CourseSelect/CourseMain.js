@@ -323,6 +323,7 @@ class CourseMain extends Component {
 						<CourseCard course={course} chosen = {false} setCourseLoading={this.setCourseLoading} handleCourseAdd = {this.handleCourseAdd}/>
 				    	:
 				    	<div/>
+
 				})
 
 
@@ -337,5 +338,7 @@ class CourseMain extends Component {
     );
   }
 }
+
+//test comment again on branch Trevor
 
 export default CourseMain;
