@@ -1,0 +1,25 @@
+.finished{
+	margin:auto;
+	text-align: center;
+	display: block;
+	font-size:40px;
+	color:white;
+	font-weight: bold;
+}
+
+.finished-image-wrapper{
+	margin-top: 5vh;
+	cursor: pointer;
+}
+
+.finished-image{
+	width: 50%;
+	display:block;
+	margin:auto;
+}
+
+.finished-image-mobile{
+	width: 90%;
+	display:block;
+	margin:auto;
+}

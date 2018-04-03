@@ -8,3 +8,13 @@
 	background: url("../../../img/bg-pattern.png"), white;
 
 }
+.instructions-box-mobile {
+	background-color: white;
+	display: block;
+	margin:auto;
+	width: 100%;
+	height: 60vh;
+	overflow-y: scroll;
+	background: url("../../../img/bg-pattern.png"), white;
+
+}
