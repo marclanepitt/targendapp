@@ -30,6 +30,16 @@ export default class SubmitInstructions extends Component {
            3
           </div>
           <div className="submit-instruction">
+            Place your venmo username in the email body or write N/A and we will pay via check. 
+          </div>
+          <div className="submit-image">
+          </div>
+        </div>
+        <div className="submit-line">
+          <div className="submit-num">
+           4
+          </div>
+          <div className="submit-instruction">
             Attach your submitted course syllabi to the email and send to goclasscal@gmail.com
           </div>
           <div className="submit-image">
