@@ -4,6 +4,14 @@ import Introduction from "./Introduction";
 import CalInstructions from "./CalInstructions";
 import SubmitInstructions from "./SubmitInstructions";
 import $ from "jquery";
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-115975493-1');
+ReactGA.pageview("Get Paid");
+ReactGA.event({
+	category:"PAID",
+	action:"Landed on Get Paid Page",
+});
 
 class Paid extends Component {
 
@@ -37,15 +45,31 @@ class Paid extends Component {
 		if(step === 1) {
 			$("#step2,#step3,#step4").removeClass("selected");
 			return <Introduction/>;
+			ReactGA.event({
+				category:"PAID",
+				action:"went to payment options",
+			});
 		} else if(step === 2) {
+			ReactGA.event({
+				category:"PAID",
+				action:"went to event instructions",
+			});
 			$("#step3,#step4").removeClass("selected");
 			$("#step"+step).addClass("selected");
 			return <CalInstructions/>;
 		} else if(step === 3) {
+			ReactGA.event({
+				category:"PAID",
+				action:"went to submit instructions",
+			});
 			$("#step4").removeClass("selected");
 			$("#step"+step).addClass("selected");
 			return <SubmitInstructions/>;
 		} else if(step === 4) {
+			ReactGA.event({
+				category:"PAID",
+				action:"went to finished note",
+			});
 			$("#step"+step).addClass("selected");
 		}
 	}

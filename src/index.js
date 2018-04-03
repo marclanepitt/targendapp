@@ -14,6 +14,7 @@ import UserMain from "./components/UserHome/UserMain";
 import NotFound from "./components/Common/NotFound";
 import PasswordReset from "./components/Login/PasswordReset";
 import PasswordResetConfirm from "./components/Login/PasswordResetConfirm";
+import Paid from "./components/Paid/Paid";
 
 
 //External Css
@@ -31,6 +32,7 @@ ReactDOM.render((
   		<Switch>
 			<Route path='/login' component={Login}/>
 			<Route exact path='/' component = {LandingPage}/>
+			<Route path='/get-paid' component={Paid}/>
 			<Route path='/reset' component={PasswordReset}/>
 			<Route path='/reset-confirm' component={PasswordResetConfirm}/>
 			<Route path='/register' component={Register}/>
