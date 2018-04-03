@@ -253,6 +253,11 @@ color: gainsboro;
   margin-bottom: .2em;
 }
 
+.nav-green {
+  border: none !important;
+  margin-left:-.2em;
+}
+
 .nav-button:hover {
   background-color: gainsboro;
 }

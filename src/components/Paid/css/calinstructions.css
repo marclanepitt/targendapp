@@ -1,0 +1,10 @@
+.instructions-box {
+	background-color: white;
+	display: block;
+	margin:auto;
+	width: 60%;
+	height: 60vh;
+	overflow-y: scroll;
+	background: url("../../../img/bg-pattern.png"), white;
+
+}

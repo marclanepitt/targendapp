@@ -148,6 +148,14 @@ export default class LandingPage extends React.Component {
 		});
 	}
 
+	pushToPaid() {
+		this.props.history.push("/get-paid");
+		ReactGA.event({
+			category:"CTA",
+			action:"Went to Get Paid Page",
+		});
+	}
+
 	termsClose() {
 		this.setState({
 			termsShow:false
@@ -179,6 +187,8 @@ export default class LandingPage extends React.Component {
 				        <li><a id="#social-proof" onClick={this.animateAndScroll}> About</a></li>
 				        <li><a id="#contact-us" onClick={this.animateAndScroll}> Contact Us</a></li>
 				        <li><a className="btn btn-sm nav-button" onClick={this.pushToLogin.bind(this)}>Login</a></li>
+						<li><a className="btn btn-sm nav-button nav-green" style={{backgroundColor:"#00C851"}} onClick={this.pushToPaid.bind(this)}>Get Paid</a></li>
+
 				     </ul>
 				  </div>
 				</nav>

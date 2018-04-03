@@ -1,0 +1,93 @@
+.paid-title {
+	margin:auto;
+	display: block;
+	font-size:40px;
+	color:white;
+	font-weight: bold;
+}
+
+.paid-subtitle {
+	margin:auto;
+	color:white;
+}
+
+.paid-stepper {
+	margin:auto;
+	margin-top:4vh;
+}
+
+.step {
+	width:2em;
+	height:2em;
+	border-radius:1em;
+	background-color: lightgrey;
+	border:1px gainsboro solid;
+	margin: auto;
+	display: inline-block;
+	margin-left: 5em;
+	text-align: center;
+	line-height: 2em;
+	font-size: 16px;
+	color:white;
+}
+
+.step:hover::before {
+	content: attr(step-des);
+	height: 5vh;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 2vh;
+	background-color: white;
+	display: block;
+	position: absolute;
+	margin-left: 4%;
+	margin-top:-3vh;
+	color: black;
+	font-weight: bold;
+}
+
+.step::after {
+	content:"";
+	width: 4.9em;
+	height: 2px;
+	background-color: white;
+	position: relative;
+	display: block;
+	margin-left: 2em;
+	margin-top:-1.2em;
+}
+
+
+.step.selected {
+	background-color: #4285F4 !important;
+	border:1px #4285F4 solid !important;
+}
+
+.step.end::after {
+	content:none;
+}
+
+.paid-step-container {
+	height: 60vh;
+	margin-top:2vh;
+}
+
+.btn-row {
+	margin-top: 2vh !important;
+}
+
+.btn-row,.btn {
+	display: block;
+	margin: auto;
+}
+
+.pay-card-type {
+	margin-top: 6vh;
+	font-size:34px;
+	text-align: center;
+}
+
+.colored-type {
+	color:#2B73AD;
+	font-weight: bold;
+}
